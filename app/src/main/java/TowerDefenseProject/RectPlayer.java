@@ -75,20 +75,6 @@ public class RectPlayer implements GameObject, IMovable, ISelectable {
         System.out.println("unSelected");
     }
 
-   //@Override
-   //public boolean CanChangePosition() {
-   //    return true;
-   //}
-
-   //@Override
-   //public void newPosition(int x, int y) {
-   //    p.set(x,y);
-   //}
-
-   //@Override
-   //public void OnTapafterSelected(GameObject previouslySelected) {
-
-   // }
 
     @Override
     public void SetGameObjectPoint(int x, int y) {
