@@ -10,11 +10,11 @@ import Interfaces.IMovable;
 import Interfaces.ISelectable;
 
 /**
- * Created by guth2 on 2018. 04. 22..
+ * Created by guth2 on 2018. 04. 22.
+ * test class
  */
 
 public class RectPlayer implements GameObject, IMovable, ISelectable {
-
 
     //!!!testing gameObject!!!
     private Rect rectangle;
@@ -37,6 +37,16 @@ public class RectPlayer implements GameObject, IMovable, ISelectable {
     @Override
     public void Start() {
 
+    }
+
+    @Override
+    public Point GetPosition() {
+        return p;
+    }
+
+    @Override
+    public boolean IsTrigger() {
+        return false;
     }
 
     @Override

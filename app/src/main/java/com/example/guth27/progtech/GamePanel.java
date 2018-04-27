@@ -2,7 +2,6 @@ package com.example.guth27.progtech;
 
 import android.content.Context;
 import android.graphics.Canvas;
-//import android.support.annotation.MainThread;
 import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -14,7 +13,8 @@ import Interfaces.ISelectable;
 import TowerDefenseProject.Game;
 
 /**
- * Created by guth2 on 2018. 04. 22..
+ * Created by guth2 on 2018. 04. 22.
+ * Responsibly for updating the game and handling user input
  */
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
@@ -38,7 +38,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         thread = new MainThread(getHolder(), this);
 
-        holder = new GameObjectHolder();
+        holder = GameObjectHolder.GetInstance();
         game = new Game(holder);
 
         setFocusable(true);
@@ -60,7 +60,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         boolean retry = true;
-        while(true){
+        while(retry){
             try{
                 thread.setRunning(false);
                 thread.join();
@@ -127,6 +127,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         game.Update();
         holder.UpdateAll();
         holder.UpdateMovables();
+        holder.CheckTriggers();
     }
     @Override
     public void draw(Canvas canvas)

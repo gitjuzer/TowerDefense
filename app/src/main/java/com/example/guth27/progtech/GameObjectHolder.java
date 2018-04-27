@@ -1,32 +1,48 @@
 package com.example.guth27.progtech;
 
 import android.graphics.Canvas;
+import android.graphics.Point;
+import android.telephony.IccOpenLogicalChannelResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Interfaces.GameObject;
+import Interfaces.ICollisionTrigger;
 import Interfaces.IMovable;
 import Interfaces.ISelectable;
 
 /**
- * Created by guth2 on 2018. 04. 22..
+ * Created by guth2 on 2018. 04. 22.
+ * Container class. Holds all GameObject and makes there basic funcions accessable.
  */
 
 public class GameObjectHolder {
 
-    int totalObjects;
+    private static GameObjectHolder uniqueInstance=null;
+    private int totalObjects;
 
-    List<GameObject> layer0;
-    List<GameObject> layer1;
-    List<GameObject> layer2;
-    List<GameObject> layer3;
-    List<GameObject> layer4;
-    List<GameObject> nonDrawable;
-    List<IMovable> movables;
-    List<ISelectable> selectables;
+    private List<GameObject> layer0;
+    private List<GameObject> layer1;
+    private List<GameObject> layer2;
+    private List<GameObject> layer3;
+    private List<GameObject> layer4;
+    private List<GameObject> nonDrawable;
+    private List<IMovable> movables;
+    private List<ISelectable> selectables;
+    private List<GameObject> triggers;
+    private List<ICollisionTrigger> collisionTriggers;
 
-    public GameObjectHolder(){
+    public static GameObjectHolder GetInstance()
+    {
+        if (uniqueInstance==null)
+        {
+            uniqueInstance = new GameObjectHolder();
+        }
+        return uniqueInstance;
+    }
+
+    private GameObjectHolder(){
         layer0 = new ArrayList<>();
         layer1 = new ArrayList<>();
         layer2 = new ArrayList<>();
@@ -35,6 +51,8 @@ public class GameObjectHolder {
         nonDrawable = new ArrayList<>();
         movables = new ArrayList<>();
         selectables = new ArrayList<>();
+        triggers = new ArrayList<>();
+        collisionTriggers = new ArrayList<>();
     }
 
     public int NumOfGameObjects(){ return totalObjects; }
@@ -47,6 +65,8 @@ public class GameObjectHolder {
         totalObjects++;
         if(object instanceof IMovable) AddIMovable((IMovable) object);
         if(object instanceof ISelectable) AddISelectable((ISelectable) object);
+        if(object instanceof ICollisionTrigger) AddICollisionTrigger((ICollisionTrigger) object);
+        if(object.IsTrigger()) AddTrigger(object);
         object.Start();
     }
     public void AddGameObjectToHolderLayer1(GameObject object) {
@@ -54,6 +74,8 @@ public class GameObjectHolder {
         totalObjects++;
         if(object instanceof IMovable) AddIMovable((IMovable) object);
         if(object instanceof ISelectable) AddISelectable((ISelectable) object);
+        if(object instanceof ICollisionTrigger) AddICollisionTrigger((ICollisionTrigger) object);
+        if(object.IsTrigger()) AddTrigger(object);
         object.Start();
     }
     public void AddGameObjectToHolderLayer2(GameObject object) {
@@ -61,6 +83,8 @@ public class GameObjectHolder {
         totalObjects++;
         if(object instanceof IMovable) AddIMovable((IMovable) object);
         if(object instanceof ISelectable) AddISelectable((ISelectable) object);
+        if(object instanceof ICollisionTrigger) AddICollisionTrigger((ICollisionTrigger) object);
+        if(object.IsTrigger()) AddTrigger(object);
         object.Start();
     }
     public void AddGameObjectToHolderLayer3(GameObject object) {
@@ -68,6 +92,8 @@ public class GameObjectHolder {
         totalObjects++;
         if(object instanceof IMovable) AddIMovable((IMovable) object);
         if(object instanceof ISelectable) AddISelectable((ISelectable) object);
+        if(object instanceof ICollisionTrigger) AddICollisionTrigger((ICollisionTrigger) object);
+        if(object.IsTrigger()) AddTrigger(object);
         object.Start();
     }
     public void AddGameObjectToHolderLayer4(GameObject object) {
@@ -75,6 +101,8 @@ public class GameObjectHolder {
         totalObjects++;
         if(object instanceof IMovable) AddIMovable((IMovable) object);
         if(object instanceof ISelectable) AddISelectable((ISelectable) object);
+        if(object instanceof ICollisionTrigger) AddICollisionTrigger((ICollisionTrigger) object);
+        if(object.IsTrigger()) AddTrigger(object);
         object.Start();
     }
     public void AddGameObjectToHolderNonDrawable(GameObject object) {
@@ -84,19 +112,32 @@ public class GameObjectHolder {
     }
     private void AddIMovable(IMovable movable) {movables.add(movable);}
     private void AddISelectable(ISelectable selectable) {selectables.add(selectable);}
+    private void AddICollisionTrigger(ICollisionTrigger collisionTrigger) {collisionTriggers.add(collisionTrigger);}
+    private void AddTrigger(GameObject object){triggers.add(object);}
     public void RemoveGameObjectFromHolder(GameObject object) {
+        if(object != null){
+            object.OnDestroy();
+        }
         boolean found = Remover(layer0, object);
-        if(found == false) found = Remover(layer1, object);
-        if(found == false) found = Remover(layer2, object);
-        if(found == false) found = Remover(layer3, object);
-        if(found == false) found = Remover(layer4, object);
+        if(!found) found = Remover(layer1, object);
+        if(!found) found = Remover(layer2, object);
+        if(!found) found = Remover(layer3, object);
+        if(!found) found = Remover(layer4, object);
 
-        if(found == false) System.out.println("NonExistent GameObject at RemoveGameObjectFromHolder");
+        if(!found) System.out.println("NonExistent GameObject at RemoveGameObjectFromHolder");
+    }
+    public void RemoveNonDrawableFromHolder(GameObject object)
+    {
+        nonDrawable.remove(object);
     }
     private boolean Remover(List<GameObject> layer, GameObject object)
     {
         for(int i = 0; i < layer.size();i++) {
             if(object == layer.get(i)){
+                if(object instanceof  IMovable) movables.remove((IMovable) object);
+                if(object instanceof  ISelectable) selectables.remove((ISelectable) object);
+                if(object instanceof  ICollisionTrigger) collisionTriggers.remove((ICollisionTrigger) object);
+                if(object.IsTrigger()) triggers.remove(object);
                 layer.remove(i);
                 return true;
             }
@@ -104,6 +145,18 @@ public class GameObjectHolder {
         return false;
     }
 
+    public void CheckTriggers()
+    {
+        for(ICollisionTrigger col : collisionTriggers)
+        {
+            for(GameObject trigger : triggers)
+            {
+                Point p = trigger.GetPosition();
+                if(col.BetweenBoundaries(p.x,p.y))
+                    col.OnTriggerEnter(trigger);
+            }
+        }
+    }
     public void UpdateAll() {
         for(GameObject o : layer0) o.Update();
         for(GameObject o : layer1) o.Update();

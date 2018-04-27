@@ -4,7 +4,12 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 
 /**
- * Created by guth2 on 2018. 04. 22..
+ * Created by guth2 on 2018. 04. 22.
+ * The base interface in the FrameWork
+ * Every object on the screen must be a GameObject
+ * Start: executes when the object is created.
+ * Draw, Update: executes every frame.
+ * others are called when needed
  */
 
 public interface GameObject {
@@ -13,6 +18,6 @@ public interface GameObject {
     void OnDestroy();
     String GetLabel();
     void Start();
-   // boolean BetweenBoundaries(int x, int y);
-   // void SetGameObjectPoint(int x, int y);
+    Point GetPosition();
+    boolean IsTrigger();
 }
