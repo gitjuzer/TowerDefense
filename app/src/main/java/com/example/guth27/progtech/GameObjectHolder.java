@@ -264,6 +264,10 @@ public class GameObjectHolder {
 
         return null;
     }
+    public List<IMovable> GetIMovables()
+    {
+        return movables;
+    }
     private void PutOnTop(List<GameObject> layer, GameObject object)
     {
         layer.remove(object);

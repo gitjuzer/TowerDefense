@@ -17,7 +17,17 @@ public final class Info {
     private static long totalRunningTime = 0;
     private static byte FPS = 30;
     private static GameObject selectedGameObject;
+    private static boolean anObjectIsSelectedFromMovement;
 
+
+    public static void SetAnObjectIsSelectedFroMovement(boolean isSelected)
+    {
+        anObjectIsSelectedFromMovement = isSelected;
+    }
+    public static boolean IsSomeThingSelectedForMovement()
+    {
+        return anObjectIsSelectedFromMovement;
+    }
 
     public static void SetSelectedGameObject(GameObject selected)
     {

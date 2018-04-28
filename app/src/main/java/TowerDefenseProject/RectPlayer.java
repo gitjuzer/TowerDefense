@@ -20,12 +20,14 @@ public class RectPlayer implements GameObject, IMovable, ISelectable {
     private Rect rectangle;
     private int color;
     private Point p;
+    private Point originalp;
 
     public RectPlayer(Rect rectangle, int color, Point p)
     {
         this.rectangle = rectangle;
         this.color = color;
         this.p = p;
+        originalp = p;
     }
 
     @Override
@@ -90,5 +92,10 @@ public class RectPlayer implements GameObject, IMovable, ISelectable {
     public void SetGameObjectPoint(int x, int y) {
         p.set(x,y);
         rectangle.set(p.x - rectangle.width()/2, p.y - rectangle.height()/2,p.x + rectangle.width()/2, p.y + rectangle.height()/2);
+    }
+
+    public void ResetPos()
+    {
+        p = originalp;
     }
 }

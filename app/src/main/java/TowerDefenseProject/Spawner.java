@@ -106,4 +106,9 @@ public class Spawner implements GameObject {
     public boolean IsTrigger() {
         return false;
     }
+
+    @Override
+    public boolean BetweenBoundaries(int x, int y) {
+        return false;
+    }
 }
