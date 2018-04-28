@@ -34,7 +34,7 @@ public final class Info {
     {
      totalRunningTime += totalTime;
     }
-    public static long GetTotalRunningTime()
+    public static long GetTotalRunningTimeMS()
     {
         return totalRunningTime/1000000;
     }
