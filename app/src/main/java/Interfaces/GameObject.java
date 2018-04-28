@@ -20,4 +20,5 @@ public interface GameObject {
     void Start();
     Point GetPosition();
     boolean IsTrigger();
+    boolean BetweenBoundaries(int x, int y);
 }

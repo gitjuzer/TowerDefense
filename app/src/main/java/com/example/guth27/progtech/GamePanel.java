@@ -105,8 +105,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                 IMovable movable;
                 if(!anObjectIsSelectedForMovement){
                     movable = holder.GetSelectedMovable(motionEventX, motionEventY);
-                    selectedIMovable = movable;
-                    anObjectIsSelectedForMovement = true;
+                    if(movable != null)
+                    {
+                        selectedIMovable = movable;
+                        anObjectIsSelectedForMovement = true;
+                        Info.SetAnObjectIsSelectedFroMovement(true);
+                        Info.SetSelectedGameObject((GameObject) movable);
+                    }
                 }else {
                     movable = selectedIMovable;
                 }
@@ -117,6 +122,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                 break;
             case MotionEvent.ACTION_UP:
                 anObjectIsSelectedForMovement = false;
+                Info.SetAnObjectIsSelectedFroMovement(false);
                 break;
         }
         return true;
