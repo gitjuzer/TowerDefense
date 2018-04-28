@@ -59,6 +59,35 @@ public class GameObjectHolder {
     public int NumOfIMovables() { return  movables.size(); }
     public int NumOfISelectables() { return selectables.size(); }
 
+    public List<GameObject> GetAllGameObjectWithLable(String label)
+    {
+        List<GameObject> objects = new ArrayList<>();
+        for(GameObject o : layer0) {
+            if (o.GetLabel() == label)
+                objects.add(o);
+        }
+        for(GameObject o : layer1) {
+            if (o.GetLabel() == label)
+                objects.add(o);
+        }
+        for(GameObject o : layer2) {
+            if (o.GetLabel() == label)
+                objects.add(o);
+        }
+        for(GameObject o : layer3) {
+            if (o.GetLabel() == label)
+                objects.add(o);
+        }
+        for(GameObject o : layer4) {
+            if (o.GetLabel() == label)
+                objects.add(o);
+        }
+        for(GameObject o : nonDrawable) {
+            if (o.GetLabel() == label)
+                objects.add(o);
+        }
+        return objects;
+    }
 
     public void AddGameObjectToHolderLayer0(GameObject object) {
         layer0.add(object);
