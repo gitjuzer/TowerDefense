@@ -52,6 +52,11 @@ public class Spawner implements GameObject {
     private int numOfEnemyes;
     private int alreadySpanedEnemyNum;
 
+    private int speed;
+    private int lifePoint = 10;
+    private  int wave = 1;
+    String enemyType;
+
 
     private List<GameObject> enemyList;
 
@@ -83,6 +88,20 @@ public class Spawner implements GameObject {
 
     private void SetUpNextWave() {
         alreadySpanedEnemyNum = 0;
+        this.numOfEnemyes+=2;
+        this.lifePoint+=4;
+        if (this.enemyType =="FastEnemy" && this.wave%4==0){
+            this.speed = 15;
+        }
+        else if (this.enemyType =="StrongEnemy" && this.wave%10==0)
+        {
+            this.lifePoint=30;
+            this.speed = 8;
+        }
+        else {
+            this.speed=5;
+        }
+        this.wave++;
     }
 
     @Override
