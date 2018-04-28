@@ -76,7 +76,7 @@ public class RectPlayer implements GameObject, IMovable, ISelectable {
     }
 
     @Override
-    public void OnSelected() {
+    public void OnSelected(GameObject previouslySelected) {
         System.out.println("Selected");
     }
 

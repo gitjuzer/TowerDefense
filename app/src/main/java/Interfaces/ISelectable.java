@@ -9,6 +9,6 @@ import Interfaces.GameObject;
 
 public interface ISelectable {
     boolean BetweenBoundaries(int x, int y);
-    void OnSelected();
+    void OnSelected(GameObject previouslySelected);
     void OnUnSelected(GameObject previouslySelected);
 }

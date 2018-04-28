@@ -85,17 +85,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
                         if (selectedISelectable != null && selectedISelectable != selectable) {
                             selectedISelectable.OnUnSelected((GameObject) selectable);
-                            selectable.OnSelected();
+                            selectable.OnSelected((GameObject) selectedISelectable);
                         }
                         else if(selectedISelectable != selectable)
                         {
-                            selectable.OnSelected();
+                            selectable.OnSelected(null);
                         }
                         selectedISelectable = selectable;
                         Info.SetSelectedGameObject((GameObject) selectable);
                     } else if(selectedISelectable != null)
                     {
-                        selectedISelectable.OnUnSelected((GameObject) selectable);
+                        selectedISelectable.OnUnSelected(null);
                         selectedISelectable = null;
                     }
                 }
