@@ -5,7 +5,7 @@ package Interfaces;
  */
 
 public interface IMovable {
-    void UpdateMovemenet();
+    //void UpdateMovemenet();
     boolean BetweenBoundaries(int x, int y);
     void SetGameObjectPoint(int x, int y);
 }

@@ -64,10 +64,10 @@ public class RectPlayer implements GameObject, IMovable, ISelectable {
     }
 
 
-    @Override
-    public void UpdateMovemenet() {
-        rectangle.set(p.x - rectangle.width()/2, p.y - rectangle.height()/2,p.x + rectangle.width()/2, p.y + rectangle.height()/2);
-    }
+    //@Override
+    //public void UpdateMovemenet() {
+    //    rectangle.set(p.x - rectangle.width()/2, p.y - rectangle.height()/2,p.x + rectangle.width()/2, p.y + rectangle.height()/2);
+    //}
 
     @Override
     public boolean BetweenBoundaries(int x, int y) {
@@ -89,5 +89,6 @@ public class RectPlayer implements GameObject, IMovable, ISelectable {
     @Override
     public void SetGameObjectPoint(int x, int y) {
         p.set(x,y);
+        rectangle.set(p.x - rectangle.width()/2, p.y - rectangle.height()/2,p.x + rectangle.width()/2, p.y + rectangle.height()/2);
     }
 }

@@ -23,7 +23,7 @@ public class Game extends AbstractGame {
 
     @Override
     public void Start(){
-        super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(super.Holder));
+        //super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(super.Holder));
     }
 
     @Override

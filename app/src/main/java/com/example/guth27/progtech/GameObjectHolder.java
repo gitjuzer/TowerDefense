@@ -194,9 +194,9 @@ public class GameObjectHolder {
         for(GameObject o : layer4) o.Update();
         for(GameObject o : nonDrawable) o.Update();
     }
-    public void UpdateMovables() {
-        for(IMovable m: movables) m.UpdateMovemenet();
-    }
+    //public void UpdateMovables() {
+    //    for(IMovable m: movables) m.UpdateMovemenet();
+    //}
     public void DrawAll(Canvas canvas){
         for(GameObject o : layer0) o.Draw(canvas);
         for(GameObject o : layer1) o.Draw(canvas);

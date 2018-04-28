@@ -126,7 +126,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     {
         game.Update();
         holder.UpdateAll();
-        holder.UpdateMovables();
+       // holder.UpdateMovables();
         holder.CheckTriggers();
     }
     @Override
