@@ -24,8 +24,10 @@ public class Game extends AbstractGame {
     @Override
     public void Start(){
         //super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(super.Holder));
-        super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.BLUE, new Point(300,300)));
+        //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.BLUE, new Point(300,300)));
         super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(100,100), 100,100, Color.GRAY, super.Holder));
+        MapGenerator generator = new MapGenerator(super.Holder);
+        generator.SplitScreen();
     }
 
     @Override
