@@ -17,20 +17,19 @@ import java.util.List;
 public class MapGenerator {
 
     GameObjectHolder holder;
+    private int grid = 5;
+    int width = Info.GetScreenWidth() / 9-this.grid;
+    int height = Info.GetScreenHeight() / 15-this.grid;
     List<Point> points = new ArrayList<>();
 
     public void SplitScreen() {
-        int width = Info.GetScreenWidth() / 10;
-        int height = Info.GetScreenHeight() / 16;
-
-        for (int i = width/2; i < Info.GetScreenWidth()-width; i+=width+5) {
-            for (int j = height/2; j<Info.GetScreenHeight()-3*height;j+=height+5) {
+        
+        for (int i = this.width/2+this.grid; i < Info.GetScreenWidth(); i+=this.width+this.grid) {
+            for (int j = this.height/2+this.grid; j<Info.GetScreenHeight()-3*this.height;j+=this.height+this.grid) {
                 points.add(new Point(i, j));
-                this.holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(i, j), width, height, Color.RED, this.holder));
-
+                this.holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(i, j), this.width, this.height, Color.RED, this.holder));
             }
        }
-
        //for (int i = 0; i<points.size();i++)
        //    System.out.printf("X: %f, Y: %f\n",points.get(i).x,points.get(i).y);
     }
