@@ -23,9 +23,11 @@ public class MapGenerator {
     List<Point> points = new ArrayList<>();
 
     public void SplitScreen() {
-        
-        for (int i = this.width/2+this.grid; i < Info.GetScreenWidth(); i+=this.width+this.grid) {
-            for (int j = this.height/2+this.grid; j<Info.GetScreenHeight()-3*this.height;j+=this.height+this.grid) {
+
+        for (int i = this.width/2+this.grid; i < Info.GetScreenWidth(); i+=this.width+this.grid)
+        {
+            for (int j = this.height/2+this.grid; j<Info.GetScreenHeight()-3*this.height;j+=this.height+this.grid)
+            {
                 points.add(new Point(i, j));
                 this.holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(i, j), this.width, this.height, Color.RED, this.holder));
             }
@@ -36,6 +38,7 @@ public class MapGenerator {
 
     public  MapGenerator(GameObjectHolder holder)
     {
+
         this.holder = holder;
     }
 }
