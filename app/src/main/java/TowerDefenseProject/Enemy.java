@@ -2,6 +2,7 @@ package TowerDefenseProject;
 
 import android.graphics.Canvas;
 import android.graphics.Point;
+import android.graphics.Rect;
 
 import Interfaces.GameObject;
 
@@ -16,21 +17,23 @@ enum Direction{
 public class Enemy implements GameObject {
 
     private Point p;
+    private Rect rect;
     private GameObject currentDestination;
     private int destinationIndex;
     EnemyStrategy enemyStrategy;
     Direction movingDirection;
 
-    public Enemy(Point spawnPosition, EnemyStrategy enemyStrategy)
+    public Enemy(Point spawnPosition, Rect rect, EnemyStrategy enemyStrategy)
     {
         p = spawnPosition;
+        this.rect = rect;
         destinationIndex = 1;
         this.enemyStrategy = enemyStrategy;
     }
 
     @Override
     public void Draw(Canvas canvas) {
-
+        enemyStrategy.Draw(canvas, rect);
     }
 
     @Override
