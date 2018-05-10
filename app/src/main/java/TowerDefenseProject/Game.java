@@ -20,22 +20,27 @@ import Interfaces.GameObject;
 public class Game extends AbstractGame {
 
     private static List<GameObject> route;
+    private static GameObject lastPoint;
     private static int GamePoints;
+    private static int HP;
 
     public Game()
     {
         route = new ArrayList<>();
+        HP = 30;
     }
 
     @Override
     public void Start(){
+        super.SetBackGroundColor(Color.LTGRAY);
+
         ////super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(super.Holder));
-//
+
         ////super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.BLUE, new Point(300,300)));
         //super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(100,100), 100,100, Color.GRAY, super.Holder));
         //MapGenerator generator = new MapGenerator(super.Holder);
         //generator.SplitScreen();
-//
+
         //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.BLUE, new Point(300,300)));
         //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.CYAN, new Point(300,300)));
         //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.BLACK, new Point(300,300)));
@@ -51,12 +56,17 @@ public class Game extends AbstractGame {
 
     @Override
     public void Update() {
-
+        //if hp == 0 end
     }
+
 
     public static void SetRoutePoints(List<GameObject> points)
     {
         route = points;
+        lastPoint = points.get(points.size() - 1);
+    }
+    public static Point GetLastPoint(){
+        return lastPoint.GetPosition();
     }
     public static GameObject GetNextRoutePoint(int i)
     {
@@ -73,4 +83,9 @@ public class Game extends AbstractGame {
         }
         return false;
     }
+    public static void MinusHP(int hp)
+    {
+        HP -= hp;
+    }
+
 }

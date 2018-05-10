@@ -1,5 +1,6 @@
 package com.example.guth27.progtech;
 
+import android.graphics.Color;
 import android.util.DisplayMetrics;
 
 import Interfaces.GameObject;
@@ -20,6 +21,16 @@ public final class Info {
     private static GameObject previouslySelected;
     private static boolean anObjectIsSelectedFromMovement;
 
+    private static int color = Color.WHITE;
+
+    public static int GetColor()
+    {
+        return color;
+    }
+    public static void SetColor(int i)
+    {
+        color = i;
+    }
 
     private static boolean firstSelect = true;
 

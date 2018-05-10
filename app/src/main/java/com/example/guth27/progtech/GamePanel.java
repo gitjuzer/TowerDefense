@@ -132,7 +132,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     {
         game.Update();
         holder.UpdateAll();
-       // holder.UpdateMovables();
         holder.CheckTriggers();
     }
     @Override
@@ -140,8 +139,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     {
         super.draw(canvas);
 
-        canvas.drawColor(Color.WHITE);
+        canvas.drawColor(Info.GetColor());
         holder.DrawAll(canvas);
-       //player.Draw(canvas);
     }
 }

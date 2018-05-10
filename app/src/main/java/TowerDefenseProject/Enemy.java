@@ -22,8 +22,10 @@ public class Enemy implements GameObject {
     private Rect rect;
     private GameObject currentDestination;
     private int destinationIndex;
-    EnemyStrategy enemyStrategy;
-    Direction movingDirection;
+    private EnemyStrategy enemyStrategy;
+    private Direction movingDirection;
+
+    private boolean reachedLast = false;
 
     public Enemy(Point spawnPosition, int width, int height, EnemyStrategy enemyStrategy)
     {
@@ -40,28 +42,33 @@ public class Enemy implements GameObject {
 
     @Override
     public void Update() {
-        if(ReachedDestionation()) {
-            destinationIndex++;
-            currentDestination = Game.GetNextRoutePoint(destinationIndex);
-        }
-        if(p.x == currentDestination.GetPosition().x && p.y > currentDestination.GetPosition().y) movingDirection = Direction.Up;
-        else if(p.x == currentDestination.GetPosition().x && p.y < currentDestination.GetPosition().y) movingDirection = Direction.Down;
-        else if(p.x > currentDestination.GetPosition().x && p.y == currentDestination.GetPosition().y) movingDirection = Direction.Left;
-        else movingDirection = Direction.Right;
+        if(!reachedLast) {
+            if (ReachedDestionation()) {
+                destinationIndex++;
+                currentDestination = Game.GetNextRoutePoint(destinationIndex);
+            }
+            if (p.x == currentDestination.GetPosition().x && p.y > currentDestination.GetPosition().y)
+                movingDirection = Direction.Up;
+            else if (p.x == currentDestination.GetPosition().x && p.y < currentDestination.GetPosition().y)
+                movingDirection = Direction.Down;
+            else if (p.x > currentDestination.GetPosition().x && p.y == currentDestination.GetPosition().y)
+                movingDirection = Direction.Left;
+            else movingDirection = Direction.Right;
 
-        if(movingDirection == Direction.Up){
-            p.y -= enemyStrategy.GetSpeed();
+            if (movingDirection == Direction.Up) {
+                p.y -= enemyStrategy.GetSpeed();
+            } else if (movingDirection == Direction.Down) {
+                p.y += enemyStrategy.GetSpeed();
+            } else if (movingDirection == Direction.Left) {
+                p.x -= enemyStrategy.GetSpeed();
+            } else {
+                p.x += enemyStrategy.GetSpeed();
+            }
         }
-        else if(movingDirection == Direction.Down){
+        else
+        {
             p.y += enemyStrategy.GetSpeed();
         }
-        else if(movingDirection == Direction.Left){
-            p.x -= enemyStrategy.GetSpeed();
-        }
-        else{
-            p.x += enemyStrategy.GetSpeed();
-        }
-
         rect.set(p.x - rect.width()/2, p.y - rect.height()/2,p.x + rect.width()/2, p.y + rect.height()/2);
 
     }
@@ -69,14 +76,15 @@ public class Enemy implements GameObject {
     private boolean ReachedDestionation() {
         boolean reached = false;
 
-        if(currentDestination.GetLabel() == "EnemyTarget"){
-            GameObjectHolder.GetInstance().RemoveGameObjectFromHolder(this);
-        }
+        //if(currentDestination.GetLabel() == "EnemyTarget"){
+        //    GameObjectHolder.GetInstance().RemoveGameObjectFromHolder(this);
+        //}
 
         if(movingDirection == Direction.Up){
             if(p.y <= currentDestination.GetPosition().y) {
                 reached = true;
                 p.y = currentDestination.GetPosition().y;
+
             }
         }
         else if(movingDirection == Direction.Down){
@@ -97,12 +105,12 @@ public class Enemy implements GameObject {
                 p.x = currentDestination.GetPosition().x;
             }
         }
+        if(p == Game.GetLastPoint()) reachedLast = true;
         return reached;
     }
 
     @Override
     public void OnDestroy() {
-        //hp--
         Game.AddGamePoint(enemyStrategy.GetReward());
     }
 

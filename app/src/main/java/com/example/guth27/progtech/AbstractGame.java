@@ -18,4 +18,9 @@ public abstract class AbstractGame {
 
     public abstract  void Start();
     public abstract  void Update();
+
+    public void SetBackGroundColor(int color)
+    {
+        Info.SetColor(color);
+    }
 }
