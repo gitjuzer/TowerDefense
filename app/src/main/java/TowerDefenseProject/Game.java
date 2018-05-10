@@ -20,6 +20,7 @@ import Interfaces.GameObject;
 public class Game extends AbstractGame {
 
     private static List<GameObject> route;
+    private static int GamePoints;
 
     public Game()
     {
@@ -60,5 +61,16 @@ public class Game extends AbstractGame {
     public static GameObject GetNextRoutePoint(int i)
     {
         return route.get(i);
+    }
+    public static void AddGamePoint(int i) {
+        GamePoints += i;
+    }
+    public boolean Buy(int cost)
+    {
+        if(GamePoints >= cost){
+            GamePoints -= cost;
+            return true;
+        }
+        return false;
     }
 }
