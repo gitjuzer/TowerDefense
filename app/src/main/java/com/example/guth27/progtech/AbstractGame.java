@@ -11,9 +11,9 @@ public abstract class AbstractGame {
 
     protected GameObjectHolder Holder;
 
-    protected AbstractGame(GameObjectHolder holder)
+    protected AbstractGame()
     {
-        this.Holder = holder;
+        this.Holder =GameObjectHolder.GetInstance();
     }
 
     public abstract  void Start();

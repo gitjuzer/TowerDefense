@@ -46,9 +46,6 @@ public class Turret implements GameObject, ISelectable {
         baseRect = new Rect(p.x - width/2, p.y - height/2,p.x + width/2, p.y + height/2);
         middleRect = new Rect(p.x - width/4, p.y - height/4,p.x + width/4, p.y + height/4);
         outLine =  new Rect(p.x - width/2 - 4, p.y - height/2 - 4,p.x + width/2 + 4, p.y + height/2 + 4);
-       //this.color1 = color1;
-       //this.color2 = color2;
-       //this.outLineColor = Color.LTGRAY;
         this.shootColor = shootingStrategy.LaserColor();
         hasOutLine = false;
         enemies = new ArrayList<>();
@@ -76,15 +73,6 @@ public class Turret implements GameObject, ISelectable {
     public void Draw(Canvas canvas) {
 
         state.DrawTurret(canvas, baseRect, middleRect, outLine, hasOutLine, shootingStrategy.Type());
-       //
-       // if(hasOutLine){
-       //     paint.setColor(outLineColor);
-       //     canvas.drawRect(outLine, paint);
-       // }
-       // paint.setColor(color1);
-       // canvas.drawRect(baseRect, paint);
-       // paint.setColor(color2);
-       // canvas.drawRect(middleRect, paint);
 
         Paint paint = new Paint();
         paint.setColor(shootColor);
