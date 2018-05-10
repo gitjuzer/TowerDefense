@@ -70,7 +70,6 @@ public class Enemy implements GameObject {
         boolean reached = false;
 
         if(currentDestination.GetLabel() == "EnemyTarget"){
-
             GameObjectHolder.GetInstance().RemoveGameObjectFromHolder(this);
         }
 
