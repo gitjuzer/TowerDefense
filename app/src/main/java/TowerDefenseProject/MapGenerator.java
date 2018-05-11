@@ -41,7 +41,7 @@ public class MapGenerator extends MapGeneratorTemplate {
                 {TileType.TurretBase,TileType.Path,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase},
                 {TileType.TurretBase,TileType.Path,TileType.TurretBase,TileType.TurretBase,TileType.Path,TileType.Path,TileType.Path,TileType.TurretBase,TileType.TurretBase},
                 {TileType.TurretBase,TileType.Path,TileType.Path,TileType.Path,TileType.Path,TileType.TurretBase,TileType.Path,TileType.TurretBase,TileType.TurretBase},
-                {TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.Path,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase},
+                {TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.TurretBase,TileType.Path,TileType.TurretBase,TileType.TurretBase},
                 {TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty},
                 {TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty},
                 {TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty}
