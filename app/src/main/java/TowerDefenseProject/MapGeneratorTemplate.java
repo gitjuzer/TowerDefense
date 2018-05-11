@@ -25,12 +25,12 @@ public abstract class MapGeneratorTemplate {
     int piecesWidth, piecesHeight;
 
     public void CreateMap(){
-        grid = new Point[9][15];
+
         piecesWidth = SetWidth();
         piecesHeight = SetHeight();
         width = (Info.GetScreenWidth() / piecesWidth) - min;
         height = (Info.GetScreenHeight() / piecesHeight) - min;
-
+        grid = new Point[piecesWidth][piecesHeight];
         SplitScreen();
         layout = new TileType[piecesWidth][piecesHeight];
         layout = CreateLayout();
