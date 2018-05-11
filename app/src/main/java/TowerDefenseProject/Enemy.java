@@ -17,7 +17,7 @@ enum Direction{
     Up,Down,Left,Right
 }
 
-public class Enemy implements GameObject {
+public class Enemy implements GameObject, IObserver {
 
     private Point p;
     private Rect rect;
@@ -30,6 +30,7 @@ public class Enemy implements GameObject {
 
     public Enemy(Point spawnPosition, int width, int height, EnemyStrategy enemyStrategy)
     {
+        Game.RegisterToNotifier(this);
         p = spawnPosition;
         this.rect = new Rect(p.x - width/2, p.y - height/2,p.x + width/2, p.y + height/2);
         destinationIndex = 1;
@@ -113,6 +114,7 @@ public class Enemy implements GameObject {
     @Override
     public void OnDestroy() {
         Game.AddGamePoint(enemyStrategy.GetReward());
+        System.out.println("Destroyed");
     }
 
     @Override
@@ -132,7 +134,7 @@ public class Enemy implements GameObject {
 
     @Override
     public boolean IsTrigger() {
-        return false;
+        return true;
     }
 
     @Override
@@ -145,5 +147,10 @@ public class Enemy implements GameObject {
         enemyStrategy.SetHealth(enemyStrategy.GetHealth() - damage);
         if(enemyStrategy.GetHealth() <= 0)
             GameObjectHolder.GetInstance().RemoveGameObjectFromHolder(this);
+    }
+
+    @Override
+    public void ReceiveNotification(DayNight state) {
+
     }
 }

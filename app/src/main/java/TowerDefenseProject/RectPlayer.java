@@ -62,7 +62,7 @@ public class RectPlayer implements GameObject, IMovable, ISelectable {
 
     @Override
     public String GetLabel() {
-        return "Cube";
+        return "Enemy";
     }
 
 
