@@ -18,7 +18,7 @@ import Interfaces.ISelectable;
  * Created by guth2 on 2018. 04. 29..
  */
 
-public class Turret implements GameObject, ISelectable {
+public class Turret implements GameObject, ISelectable, IObserver {
     private TurretStrategy shootingStrategy;
     private TurretState state;
     private Rect baseRect;
@@ -39,6 +39,7 @@ public class Turret implements GameObject, ISelectable {
 
     public Turret(TurretStrategy shootingStrategy, Point p, int width, int height)
     {
+
         this.shootingStrategy = shootingStrategy;
         shootingStrategy.SetPoint(p);
         this.p = p;
@@ -54,6 +55,7 @@ public class Turret implements GameObject, ISelectable {
         turretType = shootingStrategy.Type();
         state = new StateLevel1();
 
+        Game.RegisterToNotifier(this);
     }
 
 
@@ -89,7 +91,7 @@ public class Turret implements GameObject, ISelectable {
     public void Update() {
         if(targets.size() > 0){
             for(GameObject object : targets){
-                ((Enemy)object).DamageTaken(GetDamage(state.GetDamage(this.GetLabel())));
+                ((Enemy)object).DamageTaken(GetDamage());
             }
         }
 
@@ -112,7 +114,7 @@ public class Turret implements GameObject, ISelectable {
         }
     }
 
-    private int GetDamage(int basedamage)
+    private int GetDamage()
     {
         return state.GetDamage(turretType);
     }
@@ -145,5 +147,10 @@ public class Turret implements GameObject, ISelectable {
     @Override
     public boolean BetweenBoundaries(int x, int y) {
         return x >= (baseRect.left) && x <= (baseRect.right) && y >= (baseRect.top) && y <= (baseRect.bottom);
+    }
+
+    @Override
+    public void ReceiveNotification(DayNight state) {
+        System.out.println(state);
     }
 }
