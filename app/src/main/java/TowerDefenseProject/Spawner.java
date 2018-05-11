@@ -8,6 +8,7 @@ import com.example.guth27.progtech.Info;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Interfaces.GameObject;
 
@@ -33,13 +34,14 @@ public class Spawner implements GameObject {
         this.spawnLocation = spawnLocation;
         enemyList = new ArrayList<>();
         waveInProgress = true;
-        timeBeforeStartMS = 5000;
-        timeBetweenWavesMS = 10000;
+        timeBeforeStartMS = 10000;
+        timeBetweenWavesMS = 20000;
         waveEndedTimeMS = 0;
         timeBetweenSpawnsMS = 500;
         alreadySpanedEnemyNum = 0;
         numOfEnemyes = 5;
-        spawnLocation = Game.GetNextRoutePoint(0).GetPosition();
+        rng = new Random();
+        waitforEnd = false;
     }
 
     private long timeBeforeStartMS;
@@ -52,13 +54,12 @@ public class Spawner implements GameObject {
     private int numOfEnemyes;
     private int alreadySpanedEnemyNum;
 
-    private int speed;
-    private int lifePoint = 10;
     private  int wave = 1;
-    String enemyType;
 
 
     private List<GameObject> enemyList;
+    boolean waitforEnd;
+    Random rng;
 
     @Override
     public void Draw(Canvas canvas) {}
@@ -66,42 +67,37 @@ public class Spawner implements GameObject {
     @Override
     public void Update() {
 
-        enemyList = GameObjectHolder.GetInstance().GetAllGameObjectWithLable("EnemyStrategy");
-
-        if(timeBeforeStartMS <= Info.GetTotalRunningTimeMS() && waveInProgress && waveEndedTimeMS <= Info.GetTotalRunningTimeMS() - timeBetweenWavesMS)
-        {
-            System.out.println("start");
-            if(alreadySpanedEnemyNum == numOfEnemyes) {
-                waveEndedTimeMS = Info.GetTotalRunningTimeMS();
-                SetUpNextWave();
-            } else
-            {
-                if(enemyIsSpawnedMS <= Info.GetTotalRunningTimeMS() - timeBetweenSpawnsMS){
-                    //spawn here at spawnLocation
-                    System.out.println("spawn");
-                    enemyIsSpawnedMS = Info.GetTotalRunningTimeMS();
-                    alreadySpanedEnemyNum++;
+        enemyList = GameObjectHolder.GetInstance().GetAllGameObjectWithLable("Enemy");
+        if(!waitforEnd) {
+            if (timeBetweenSpawnsMS < Info.GetTotalRunningTimeMS() && waveEndedTimeMS <= Info.GetTotalRunningTimeMS() - timeBetweenWavesMS) {
+                if (alreadySpanedEnemyNum == numOfEnemyes) {
+                    waveEndedTimeMS = Info.GetTotalRunningTimeMS();
+                    waitforEnd = true;
+                    SetUpNextWave();
+                } else {
+                    if (enemyIsSpawnedMS <= Info.GetTotalRunningTimeMS() - timeBetweenSpawnsMS) {
+                        int random = rng.nextInt(3);
+                        if(random == 0)
+                            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(500,0), 30,30, new NormalEnemy(wave)));
+                        else if(random == 1)
+                            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(500,0), 30,30, new FastEnemy(wave)));
+                        else
+                            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(500,0), 30,30, new StrongEnemy(wave)));
+                        System.out.println(random);
+                        enemyIsSpawnedMS = Info.GetTotalRunningTimeMS();
+                        alreadySpanedEnemyNum++;
+                    }
                 }
             }
-        }
+        } else if(enemyList.size() == 0)
+            waitforEnd = false;
+
     }
 
     private void SetUpNextWave() {
-        alreadySpanedEnemyNum = 0;
-        this.numOfEnemyes+=2;
-        this.lifePoint+=4;
-        if (this.enemyType =="FastEnemy" && this.wave%4==0){
-            this.speed = 15;
-        }
-        else if (this.enemyType =="StrongEnemy" && this.wave%10==0)
-        {
-            this.lifePoint=30;
-            this.speed = 8;
-        }
-        else {
-            this.speed=5;
-        }
-        this.wave++;
+       alreadySpanedEnemyNum = 0;
+       numOfEnemyes += 2;
+       this.wave++;
     }
 
     @Override
