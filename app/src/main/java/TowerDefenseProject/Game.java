@@ -50,47 +50,14 @@ public class Game extends AbstractGame {
         notifier.NotifyObservers(current);
         //super.SetBackGroundColor(Color.LTGRAY);
 
-        super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(new Point(500,0)));
+        //super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(new Point(500,0)));
 
-        //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.BLUE, new Point(300,300)));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(100,100), 100,100, Color.GRAY));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(200,200), 100,100, Color.GRAY));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(300,300), 100,100, Color.GRAY));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(400,300), 100,100, Color.GRAY));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(400,400), 100,100, Color.GRAY));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(400,500), 100,100, Color.GRAY));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(400,600), 100,100, Color.GRAY));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(400,700), 100,100, Color.GRAY));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(400,800), 100,100, Color.GRAY));
-        super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(400,900), 100,100, Color.GRAY));
 
-        //MapGenerator generator = new MapGenerator(super.Holder);
-        //generator.SplitScreen();
 
-        //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.BLUE, new Point(400,300)));
-        //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.CYAN, new Point(400,300)));
-        //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.BLACK, new Point(400,300)));
-        //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.DKGRAY, new Point(400,300)));
-        //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.YELLOW, new Point(400,300)));
-        //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.MAGENTA, new Point(300,300)));
-       //// super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(100,100), 100,100, Color.GRAY, super.Holder));
-        //GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new ShotgunTurretStrategy(), new Point(500,500), 100,100, super.Holder));
-        //GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new StrongTurretStrategy(), new Point(700,500), 100,100, super.Holder));
-        //super.Holder.AddGameObjectToHolderLayer1(new Turret(new ShotgunTurretStrategy(), new Point(500,800), 100,100, super.Holder));
-        ////super.Holder.AddGameObjectToHolderLayer1(new Turret(new SimpleTurretStrategy(), new Point(500,500), 100,100, Color.RED,Color.YELLOW,super.Holder));
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Upgrade(300,100, new Point(200,1000)));
+        MapGenerator generator = new MapGenerator();
+        generator.CreateMap();
 
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(900,400),"Simple",100,100));
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(700,700),"Strong",100,100));
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(800,300),"Shotgun",100,100));
 
-       // GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(500,0), 30,30, new NormalEnemy(1)));
-       // GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(520,0), 30,30, new FastEnemy(1)));
-       // GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(480,0), 30,30, new StrongEnemy(1)));
-
-        //GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new SimpleTurretStrategy(),new Point(1000,1000),100,100));
-
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new EnemyGoal(1000,200,new Point(500,1000)));
 
     }
 
