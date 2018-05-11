@@ -27,9 +27,17 @@ public class StateLevel2 extends TurretState {
     @Override
     public void DrawTurret(Canvas canvas, Rect base, Rect middle, Rect outline, boolean hasoutline, String turretType) {
         Paint paint = new Paint();
+        Paint range = new Paint();
+
+        range.setColor(Color.RED);
+        range.setStrokeWidth(10);
+        range.setStyle(Paint.Style.STROKE);
+
         if(hasoutline){
             paint.setColor(Color.LTGRAY);
             canvas.drawRect(outline, paint);
+            canvas.drawCircle(base.centerX(),base.centerY(),GetRange(turretType),range);
+
         }
         if(turretType.equals("Simple")){
             paint.setARGB(255,47, 145, 67);
