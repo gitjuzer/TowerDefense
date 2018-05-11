@@ -20,8 +20,8 @@ import Interfaces.GameObject;
 
 public class Game extends AbstractGame {
 
-    private static List<GameObject> route;
-    private static GameObject lastPoint;
+    private static List<Point> route;
+    private static Point lastPoint;
     private static int GamePoints;
     private static int HP;
 
@@ -49,13 +49,16 @@ public class Game extends AbstractGame {
     public void Start(){
         notifier.NotifyObservers(current);
         //super.SetBackGroundColor(Color.LTGRAY);
-
-        //super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(new Point(500,0)));
-
-
-
         MapGenerator generator = new MapGenerator();
         generator.CreateMap();
+        //super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(route.get(0)));
+        super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(route.get(0)));
+
+
+       // GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(route.get(0), 30,30, new FastEnemy(1)));
+        //GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(route.get(0), 30,30, new NormalEnemy(1)));
+        //GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(route.get(0), 30,30, new StrongEnemy(1)));
+
 
     }
 
@@ -79,16 +82,19 @@ public class Game extends AbstractGame {
     }
 
 
-    public static void SetRoutePoints(List<GameObject> points)
+    public static void SetRoutePoints(List<Point> points)
     {
         route = points;
         lastPoint = points.get(points.size() - 1);
     }
     public static Point GetLastPoint(){
-        return lastPoint.GetPosition();
+        return lastPoint;
     }
-    public static GameObject GetNextRoutePoint(int i)
+    public static Point GetNextRoutePoint(int i)
     {
+        if(i >= route.size()) {
+            return new Point(route.get(route.size() - 1).x, Info.GetScreenHeight());
+        }
         return route.get(i);
     }
     public static void AddGamePoint(int i) {

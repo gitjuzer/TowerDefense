@@ -22,7 +22,7 @@ public class NormalEnemy extends EnemyStrategy
         SetSpeed(5);
         CheckWave(wave);
        this.paint = new Paint();
-        this.paint.setColor(Color.YELLOW);
+        this.paint.setColor(Color.BLUE);
     }
 
     @Override

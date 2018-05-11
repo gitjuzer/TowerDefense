@@ -18,6 +18,11 @@ public class MapGenerator extends MapGeneratorTemplate {
 
 
     @Override
+    protected int SetPathLenght() {
+        return 28;
+    }
+
+    @Override
     protected int SetWidth() {
         return 9;
     }

@@ -34,10 +34,10 @@ public class Spawner implements GameObject {
         this.spawnLocation = spawnLocation;
         enemyList = new ArrayList<>();
         waveInProgress = true;
-        timeBeforeStartMS = 10000;
-        timeBetweenWavesMS = 20000;
+        timeBeforeStartMS = 5000;
+        timeBetweenWavesMS = 10000;
         waveEndedTimeMS = 0;
-        timeBetweenSpawnsMS = 500;
+        timeBetweenSpawnsMS = 2000;
         alreadySpanedEnemyNum = 0;
         numOfEnemyes = 5;
         rng = new Random();
@@ -78,11 +78,11 @@ public class Spawner implements GameObject {
                     if (enemyIsSpawnedMS <= Info.GetTotalRunningTimeMS() - timeBetweenSpawnsMS) {
                         int random = rng.nextInt(3);
                         if(random == 0)
-                            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(500,0), 30,30, new NormalEnemy(wave)));
+                            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(spawnLocation.x,spawnLocation.y), 30,30, new NormalEnemy(wave)));
                         else if(random == 1)
-                            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(500,0), 30,30, new FastEnemy(wave)));
+                            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(spawnLocation.x,spawnLocation.y), 30,30, new FastEnemy(wave)));
                         else
-                            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(500,0), 30,30, new StrongEnemy(wave)));
+                            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(spawnLocation.x,spawnLocation.y), 30,30, new StrongEnemy(wave)));
                         System.out.println(random);
                         enemyIsSpawnedMS = Info.GetTotalRunningTimeMS();
                         alreadySpanedEnemyNum++;

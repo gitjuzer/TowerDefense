@@ -21,13 +21,11 @@ public class Enemy implements GameObject, IObserver {
 
     private Point p;
     private Rect rect;
-    private GameObject currentDestination;
+    private Point currentDestination;
     private int destinationIndex;
     private EnemyStrategy enemyStrategy;
     private Direction movingDirection;
 
-    //ezt majd megváltoztatni ha megvan a mapgenerator
-    private boolean reachedLast = true;
 
     public Enemy(Point spawnPosition, int width, int height, EnemyStrategy enemyStrategy)
     {
@@ -36,6 +34,7 @@ public class Enemy implements GameObject, IObserver {
         this.rect = new Rect(p.x - width/2, p.y - height/2,p.x + width/2, p.y + height/2);
         destinationIndex = 1;
         this.enemyStrategy = enemyStrategy;
+        currentDestination = Game.GetNextRoutePoint(destinationIndex);
     }
 
     @Override
@@ -45,33 +44,28 @@ public class Enemy implements GameObject, IObserver {
 
     @Override
     public void Update() {
-        if(!reachedLast) {
-            if (ReachedDestionation()) {
-                destinationIndex++;
-                currentDestination = Game.GetNextRoutePoint(destinationIndex);
-            }
-            if (p.x == currentDestination.GetPosition().x && p.y > currentDestination.GetPosition().y)
-                movingDirection = Direction.Up;
-            else if (p.x == currentDestination.GetPosition().x && p.y < currentDestination.GetPosition().y)
-                movingDirection = Direction.Down;
-            else if (p.x > currentDestination.GetPosition().x && p.y == currentDestination.GetPosition().y)
-                movingDirection = Direction.Left;
-            else movingDirection = Direction.Right;
+           if (ReachedDestionation()) {
+               destinationIndex++;
+               currentDestination = Game.GetNextRoutePoint(destinationIndex);
+           }
+           if (p.x == currentDestination.x && p.y > currentDestination.y)
+               movingDirection = Direction.Up;
+           else if (p.x == currentDestination.x && p.y < currentDestination.y)
+               movingDirection = Direction.Down;
+           else if (p.x > currentDestination.x && p.y == currentDestination.y)
+               movingDirection = Direction.Left;
+           else movingDirection = Direction.Right;
 
-            if (movingDirection == Direction.Up) {
-                p.y -= enemyStrategy.GetSpeed();
-            } else if (movingDirection == Direction.Down) {
-                p.y += enemyStrategy.GetSpeed();
-            } else if (movingDirection == Direction.Left) {
-                p.x -= enemyStrategy.GetSpeed();
-            } else {
-                p.x += enemyStrategy.GetSpeed();
-            }
-        }
-        else
-        {
-            p.y += enemyStrategy.GetSpeed();
-        }
+           if (movingDirection == Direction.Up) {
+               p.y -= enemyStrategy.GetSpeed();
+           } else if (movingDirection == Direction.Down) {this.p.y += this.enemyStrategy.GetSpeed();
+           } else if (movingDirection == Direction.Left) {
+               p.x -= enemyStrategy.GetSpeed();
+           } else {
+               p.x += enemyStrategy.GetSpeed();
+           }
+
+
         rect.set(p.x - rect.width()/2, p.y - rect.height()/2,p.x + rect.width()/2, p.y + rect.height()/2);
 
     }
@@ -79,36 +73,32 @@ public class Enemy implements GameObject, IObserver {
     private boolean ReachedDestionation() {
         boolean reached = false;
 
-        //if(currentDestination.GetLabel() == "EnemyTarget"){
-        //    GameObjectHolder.GetInstance().RemoveGameObjectFromHolder(this);
-        //}
 
         if(movingDirection == Direction.Up){
-            if(p.y <= currentDestination.GetPosition().y) {
+            if(p.y <= currentDestination.y) {
                 reached = true;
-                p.y = currentDestination.GetPosition().y;
+                p.y = currentDestination.y;
 
             }
         }
         else if(movingDirection == Direction.Down){
-            if(p.y >= currentDestination.GetPosition().y) {
+            if(p.y >= currentDestination.y) {
                 reached = true;
-                p.y = currentDestination.GetPosition().y;
+                p.y = currentDestination.y;
             }
         }
         else if(movingDirection == Direction.Left){
-            if(p.x <= currentDestination.GetPosition().x) {
+            if(p.x <= currentDestination.x) {
                 reached = true;
-                p.x = currentDestination.GetPosition().x;
+                p.x = currentDestination.x;
             }
         }
         else{
-            if(p.x >= currentDestination.GetPosition().x) {
+            if(p.x >= currentDestination.x) {
                 reached = true;
-                p.x = currentDestination.GetPosition().x;
+                p.x = currentDestination.x;
             }
         }
-        if(p == Game.GetLastPoint()) reachedLast = true;
         return reached;
     }
 

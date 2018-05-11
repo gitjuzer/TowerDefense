@@ -25,7 +25,7 @@ public class EnemyGoal implements GameObject, ICollisionTrigger {
         this.p = p;
         rect = new Rect(p.x - width/2, p.y - height/2,p.x + width/2, p.y + height/2);
         paint = new Paint();
-        paint.setColor(Color.YELLOW);
+        paint.setColor(Color.DKGRAY);
     }
 
     @Override

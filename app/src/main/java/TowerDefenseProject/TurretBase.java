@@ -70,11 +70,11 @@ public class TurretBase implements GameObject {
     @Override
     public void OnDestroy() {
         if(turretType == "Simple")
-            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new SimpleTurretStrategy(),this.p,this.width,this.height));
+            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Turret(new SimpleTurretStrategy(),this.p,this.width,this.height));
         else if(turretType == "Shotgun")
-            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new ShotgunTurretStrategy(),this.p,this.width,this.height));
+            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Turret(new ShotgunTurretStrategy(),this.p,this.width,this.height));
         else
-            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new StrongTurretStrategy(),this.p,this.width,this.height));
+            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Turret(new StrongTurretStrategy(),this.p,this.width,this.height));
 
     }
 
