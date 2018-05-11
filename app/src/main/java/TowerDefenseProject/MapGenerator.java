@@ -29,7 +29,7 @@ public class MapGenerator {
             for (int j = this.height/2+this.grid; j<Info.GetScreenHeight()-3*this.height;j+=this.height+this.grid)
             {
                 points.add(new Point(i, j));
-                this.holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(i, j), this.width, this.height, Color.RED, this.holder));
+                this.holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(i, j), this.width, this.height, Color.RED));
             }
        }
        //for (int i = 0; i<points.size();i++)

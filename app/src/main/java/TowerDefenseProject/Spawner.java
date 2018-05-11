@@ -66,7 +66,7 @@ public class Spawner implements GameObject {
     @Override
     public void Update() {
 
-        enemyList = Holder.GetAllGameObjectWithLable("Enemy");
+        enemyList = Holder.GetAllGameObjectWithLable("EnemyStrategy");
 
         if(timeBeforeStartMS <= Info.GetTotalRunningTimeMS() && waveInProgress && waveEndedTimeMS <= Info.GetTotalRunningTimeMS() - timeBetweenWavesMS)
         {

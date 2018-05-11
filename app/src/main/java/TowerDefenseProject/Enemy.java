@@ -3,6 +3,7 @@ package TowerDefenseProject;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.RectF;
 
 import com.example.guth27.progtech.GameObjectHolder;
 
@@ -37,7 +38,7 @@ public class Enemy implements GameObject {
 
     @Override
     public void Draw(Canvas canvas) {
-        enemyStrategy.Draw(canvas, rect);
+        enemyStrategy.Draw(canvas,  new RectF(rect));
     }
 
     @Override

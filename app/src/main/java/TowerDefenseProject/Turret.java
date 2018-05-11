@@ -25,7 +25,6 @@ public class Turret implements GameObject, ISelectable {
     private Rect middleRect;
     private Rect outLine;
 
-
     private boolean hasOutLine;
 
     private Point p;
@@ -91,7 +90,8 @@ public class Turret implements GameObject, ISelectable {
     public void Update() {
         if(targets.size() > 0){
             for(GameObject object : targets){
-                ((Enemy)object).DamageTaken(GetDamage());
+                //damagetaken meghívása GetDamage-el
+                //((Enemy)object).TakeDamage(GetDamage(shootingStrategy.GetDamage()));
             }
         }
 
@@ -114,7 +114,7 @@ public class Turret implements GameObject, ISelectable {
         }
     }
 
-    private int GetDamage()
+    private int GetDamage(int basedamage)
     {
         return state.GetDamage(turretType);
     }
