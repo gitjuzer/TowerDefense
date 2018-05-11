@@ -32,13 +32,12 @@ public class Turret implements GameObject, ISelectable {
 
     private List<GameObject> enemies;
     private List<GameObject> targets;
-    GameObjectHolder Holder;
 
     private byte level;
     private String turretType;
 
 
-    public Turret(TurretStrategy shootingStrategy, Point p, int width, int height, GameObjectHolder Holder)
+    public Turret(TurretStrategy shootingStrategy, Point p, int width, int height)
     {
         this.shootingStrategy = shootingStrategy;
         shootingStrategy.SetPoint(p);
@@ -50,7 +49,6 @@ public class Turret implements GameObject, ISelectable {
         hasOutLine = false;
         enemies = new ArrayList<>();
         targets = new ArrayList<>();
-        this.Holder = Holder;
         level = 1;
 
         turretType = shootingStrategy.Type();
@@ -83,6 +81,7 @@ public class Turret implements GameObject, ISelectable {
                 canvas.drawLine(p.x, p.y, p2.x, p2.y, paint);
             }
         }
+        //System.out.println("draw");
     }
 
 
@@ -95,7 +94,7 @@ public class Turret implements GameObject, ISelectable {
             }
         }
 
-        enemies = Holder.GetAllGameObjectWithLable("Enemy");
+        enemies = GameObjectHolder.GetInstance().GetAllGameObjectWithLable("Enemy");
         shootingStrategy.GetOpponents(enemies);
         targets.clear();
         if(shootingStrategy.CanShoot())

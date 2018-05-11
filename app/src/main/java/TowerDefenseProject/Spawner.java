@@ -40,6 +40,7 @@ public class Spawner implements GameObject {
         timeBetweenSpawnsMS = 500;
         alreadySpanedEnemyNum = 0;
         numOfEnemyes = 5;
+        spawnLocation = Game.GetNextRoutePoint(0).GetPosition();
     }
 
     private long timeBeforeStartMS;

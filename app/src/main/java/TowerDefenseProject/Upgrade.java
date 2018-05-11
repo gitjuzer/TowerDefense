@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.TypedValue;
 
 import com.example.guth27.progtech.Info;
 
@@ -19,15 +20,24 @@ public class Upgrade implements GameObject, ISelectable {
 
     private Rect baseRect;
     private Point p;
+    private Paint paint;
+    private Paint textPaint;
 
     public Upgrade(int width, int height, Point p) {
         baseRect = new Rect(p.x - width/2, p.y - height/2,p.x + width/2, p.y + height/2);
         this.p = p;
+        paint = new Paint();
+        paint.setColor(Color.YELLOW);
+
+        textPaint = new Paint();
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(50);
+        textPaint.setTextAlign(Paint.Align.CENTER);
     }
 
     @Override
     public void OnSelected(GameObject previouslySelected) {
-        GameObject previous = Info.GetPreviouslySelectedGameObject();
+        GameObject previous = Info.GetSelectedGameObject();
         //ha van elég pont
         if(previous instanceof Turret){
             ((Turret)previous).Upgrade();
@@ -41,7 +51,9 @@ public class Upgrade implements GameObject, ISelectable {
 
     @Override
     public void Draw(Canvas canvas) {
-        canvas.drawRect(baseRect, new Paint(Color.YELLOW));
+        canvas.drawRect(baseRect, paint);
+        //paint.setColor(Color.BLACK);
+        canvas.drawText("Upgrade",p.x,p.y + 20,textPaint);
     }
 
     @Override

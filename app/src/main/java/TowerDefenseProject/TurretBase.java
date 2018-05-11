@@ -59,7 +59,7 @@ public class TurretBase implements GameObject {
                     imovableP = ((GameObject) m).GetPosition();
                     if(this.BetweenBoundaries(imovableP.x,imovableP.y)) {
                         turretType = ((GameObject) m).GetLabel();
-                        ((RectPlayer) m).ResetPos();
+                        ((Buyable) m).ResetPos();
                         GameObjectHolder.GetInstance().RemoveGameObjectFromHolder(this);
                     }
                 }
@@ -69,8 +69,13 @@ public class TurretBase implements GameObject {
 
     @Override
     public void OnDestroy() {
-        //ide majd a megfelelő torony típus kell
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new RectPlayer(this.rectangle, Color.BLUE, p));
+        if(turretType == "Simple")
+            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new SimpleTurretStrategy(),this.p,this.width,this.height));
+        else if(turretType == "Shotgun")
+            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new ShotgunTurretStrategy(),this.p,this.width,this.height));
+        else
+            GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new StrongTurretStrategy(),this.p,this.width,this.height));
+
     }
 
     @Override
