@@ -194,31 +194,23 @@ public class GameObjectHolder {
         for(GameObject o : layer4) o.Update();
         for(GameObject o : nonDrawable) o.Update();
     }
-    //public void UpdateMovables() {
-    //    for(IMovable m: movables) m.UpdateMovemenet();
-    //}
     public void DrawAll(Canvas canvas){
 
-        for(int i = layer0.size(); i >= 0; i--) {
+        for(int i = layer0.size() - 1; i >= 0; i--) {
             layer0.get(i).Draw(canvas);
         }
-        for(int i = layer1.size(); i >= 0; i--) {
+        for(int i = layer1.size() - 1; i >= 0; i--) {
             layer1.get(i).Draw(canvas);
         }
-        for(int i = layer2.size(); i >= 0; i--) {
+        for(int i = layer2.size() - 1; i >= 0; i--) {
             layer2.get(i).Draw(canvas);
         }
-        for(int i = layer3.size(); i >= 0; i--) {
+        for(int i = layer3.size() - 1; i >= 0; i--) {
             layer3.get(i).Draw(canvas);
         }
-        for(int i = layer4.size(); i >= 0; i--) {
+        for(int i = layer4.size() - 1; i >= 0; i--) {
             layer4.get(i).Draw(canvas);
         }
-        //for(GameObject o : layer0) o.Draw(canvas);
-        //for(GameObject o : layer1) o.Draw(canvas);
-        //for(GameObject o : layer2) o.Draw(canvas);
-        //for(GameObject o : layer3) o.Draw(canvas);
-        //for(GameObject o : layer4) o.Draw(canvas);
     }
 
     public IMovable GetSelectedMovable(int x, int y)
