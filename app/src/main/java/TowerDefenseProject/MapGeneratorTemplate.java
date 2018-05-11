@@ -25,11 +25,10 @@ public abstract class MapGeneratorTemplate {
     int piecesWidth, piecesHeight;
 
     public void CreateMap(){
-        grid = new Point[9][15];
         piecesWidth = SetWidth();
         piecesHeight = SetHeight();
-        width = (Info.GetScreenWidth() / piecesWidth) - min;
-        height = (Info.GetScreenHeight() / piecesHeight) - min;
+        width = (Info.GetScreenWidth() / 9) - min;
+        height = (Info.GetScreenHeight() / 15) - min;
 
         SplitScreen();
         layout = new TileType[piecesWidth][piecesHeight];
@@ -38,18 +37,23 @@ public abstract class MapGeneratorTemplate {
     }
 
     void SplitScreen() {
-
+        grid = new Point[100][100];
         a = 0;
         b = 0;
-        for (int i = this.width/2+this.min; i < Info.GetScreenWidth(); i+=this.width+this.min) {
-            System.out.println("Index: width" + a);
-            for (int j = this.height/2+this.min; j<Info.GetScreenHeight()-3*this.height;j+=this.height+this.min) {
-                    grid[a][b] = new Point(i,j);
-                    b++;
+        for (int i = this.width/2+this.min; i < Info.GetScreenWidth(); i+=this.width+this.min)
+        {
+            for (int j = this.height/2+this.min; j<Info.GetScreenHeight()-3*this.height;j+=this.height+this.min)
+            {
+                System.out.println("Height index:" + b);
+                System.out.println("Height" + j);
+                grid[a][b] = new Point(i, j);
+                GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new TurretBase(new Point(i, j), this.width, this.height, Color.RED));
+                b++;
             }
             a++;
-            b = 0;
         }
+        //for (int i = 0; i<points.size();i++)
+        //    System.out.printf("X: %f, Y: %f\n",points.get(i).x,points.get(i).y);
     }
     protected abstract int SetWidth();
     protected abstract int SetHeight();
@@ -58,9 +62,10 @@ public abstract class MapGeneratorTemplate {
 
     void GenerateLayout(){
         for(int i = 0; i < piecesWidth; i++){
-            for(int j = 0; j < piecesHeight; j++) {
+            for(int j = 0; i < piecesHeight - 3; j++) {
                 if(layout[j][i] == TileType.TurretBase)
                     GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new TurretBase(new Point(grid[i][j].x, grid[i][j].y),width,height,Color.RED));
+                System.out.println("created");
             }
         }
     }
