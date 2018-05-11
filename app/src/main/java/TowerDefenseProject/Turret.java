@@ -89,8 +89,7 @@ public class Turret implements GameObject, ISelectable {
     public void Update() {
         if(targets.size() > 0){
             for(GameObject object : targets){
-                //damagetaken meghívása GetDamage-el
-                //((Enemy)object).TakeDamage(GetDamage(shootingStrategy.GetDamage()));
+                ((Enemy)object).DamageTaken(GetDamage(state.GetDamage(this.GetLabel())));
             }
         }
 

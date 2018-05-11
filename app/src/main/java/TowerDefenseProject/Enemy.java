@@ -43,7 +43,7 @@ public class Enemy implements GameObject {
 
     @Override
     public void Update() {
-        if(!reachedLast) {
+        if(reachedLast) {
             if (ReachedDestionation()) {
                 destinationIndex++;
                 currentDestination = Game.GetNextRoutePoint(destinationIndex);
