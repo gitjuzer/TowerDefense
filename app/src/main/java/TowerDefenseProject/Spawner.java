@@ -17,21 +17,20 @@ import Interfaces.GameObject;
 
 public class Spawner implements GameObject {
     private static Spawner uniqueInstance=null;
-    private GameObjectHolder Holder;
+
     private Point spawnLocation;
 
-    public static Spawner GetInstance(GameObjectHolder holder, Point spawnLocation)
+    public static Spawner GetInstance(Point spawnLocation)
     {
         if (uniqueInstance==null)
         {
-            uniqueInstance = new Spawner(holder, spawnLocation);
+            uniqueInstance = new Spawner(spawnLocation);
         }
         return uniqueInstance;
     }
-    private Spawner(GameObjectHolder Holder, Point spawnLocation)
+    private Spawner(Point spawnLocation)
     {
         this.spawnLocation = spawnLocation;
-        this.Holder = Holder;
         enemyList = new ArrayList<>();
         waveInProgress = true;
         timeBeforeStartMS = 5000;
@@ -67,7 +66,7 @@ public class Spawner implements GameObject {
     @Override
     public void Update() {
 
-        enemyList = Holder.GetAllGameObjectWithLable("EnemyStrategy");
+        enemyList = GameObjectHolder.GetInstance().GetAllGameObjectWithLable("EnemyStrategy");
 
         if(timeBeforeStartMS <= Info.GetTotalRunningTimeMS() && waveInProgress && waveEndedTimeMS <= Info.GetTotalRunningTimeMS() - timeBetweenWavesMS)
         {
