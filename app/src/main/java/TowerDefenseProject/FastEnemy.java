@@ -11,11 +11,12 @@ public class FastEnemy extends EnemyStrategy
     private  int health;
     private Paint paint;
 
-    public  FastEnemy(int speed, int wave)
+    public  FastEnemy(int wave)
     {
-        SetSpeed(speed);
+        SetSpeed(10);
         CheckWave(wave);
-        this.paint = new Paint(Color.MAGENTA);
+        this.paint = new Paint();
+        this.paint.setColor(Color.MAGENTA);
     }
 
     @Override

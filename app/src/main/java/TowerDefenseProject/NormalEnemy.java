@@ -17,12 +17,12 @@ public class NormalEnemy extends EnemyStrategy
     Paint paint;
 
 
-    public NormalEnemy( int speed, int wave)
+    public NormalEnemy( int wave)
     {
-        SetSpeed(speed);
+        SetSpeed(5);
         CheckWave(wave);
-       this.paint = new Paint(Color.YELLOW);
-
+       this.paint = new Paint();
+        this.paint.setColor(Color.YELLOW);
     }
 
     @Override

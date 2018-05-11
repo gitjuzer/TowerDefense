@@ -17,11 +17,12 @@ public class StrongEnemy extends EnemyStrategy
     private int health;
     Paint paint;
 
-    public StrongEnemy(int speed, int wave)
+    public StrongEnemy( int wave)
     {
-        SetSpeed(speed);
+        SetSpeed(3);
         CheckWave(wave);
-        this.paint = new Paint(Color.CYAN);
+        this.paint = new Paint();
+        this.paint.setColor(Color.CYAN);
     }
 
     @Override
