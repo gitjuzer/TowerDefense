@@ -57,8 +57,6 @@ public class Game extends AbstractGame {
         MapGenerator generator = new MapGenerator();
         generator.CreateMap();
 
-
-
     }
 
     @Override

@@ -61,7 +61,13 @@ public abstract class MapGeneratorTemplate {
             for(int j = 0; j < piecesHeight; j++) {
                 if(layout[j][i] == TileType.TurretBase)
                     GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new TurretBase(new Point(grid[i][j].x, grid[i][j].y),width,height,Color.RED));
+
+
             }
         }
+    }
+    void GeneratePath()
+    {
+        
     }
 }
