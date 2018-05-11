@@ -26,7 +26,8 @@ public class Enemy implements GameObject, IObserver {
     private EnemyStrategy enemyStrategy;
     private Direction movingDirection;
 
-    private boolean reachedLast = false;
+    //ezt majd megváltoztatni ha megvan a mapgenerator
+    private boolean reachedLast = true;
 
     public Enemy(Point spawnPosition, int width, int height, EnemyStrategy enemyStrategy)
     {
@@ -44,7 +45,7 @@ public class Enemy implements GameObject, IObserver {
 
     @Override
     public void Update() {
-        if(reachedLast) {
+        if(!reachedLast) {
             if (ReachedDestionation()) {
                 destinationIndex++;
                 currentDestination = Game.GetNextRoutePoint(destinationIndex);
@@ -114,7 +115,6 @@ public class Enemy implements GameObject, IObserver {
     @Override
     public void OnDestroy() {
         Game.AddGamePoint(enemyStrategy.GetReward());
-        System.out.println("Destroyed");
     }
 
     @Override

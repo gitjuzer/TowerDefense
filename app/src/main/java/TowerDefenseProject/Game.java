@@ -50,7 +50,7 @@ public class Game extends AbstractGame {
         notifier.NotifyObservers(current);
         //super.SetBackGroundColor(Color.LTGRAY);
 
-        //super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(super.Holder));
+        super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(new Point(500,0)));
 
         //super.Holder.AddGameObjectToHolderLayer0(new RectPlayer(new Rect(100,100,200,200), Color.BLUE, new Point(300,300)));
         super.Holder.AddGameObjectToHolderLayer0(new TurretBase(new Point(100,100), 100,100, Color.GRAY));
@@ -84,11 +84,13 @@ public class Game extends AbstractGame {
         GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(700,700),"Strong",100,100));
         GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(800,300),"Shotgun",100,100));
 
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(500,0), 30,30, new NormalEnemy(1)));
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(520,0), 30,30, new FastEnemy(1)));
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(480,0), 30,30, new StrongEnemy(1)));
+       // GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(500,0), 30,30, new NormalEnemy(1)));
+       // GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(520,0), 30,30, new FastEnemy(1)));
+       // GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(480,0), 30,30, new StrongEnemy(1)));
 
         //GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new Turret(new SimpleTurretStrategy(),new Point(1000,1000),100,100));
+
+        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new EnemyGoal(1000,200,new Point(500,1000)));
 
     }
 
