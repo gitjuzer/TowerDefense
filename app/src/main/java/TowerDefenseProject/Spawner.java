@@ -37,7 +37,7 @@ public class Spawner implements GameObject {
         timeBeforeStartMS = 5000;
         timeBetweenWavesMS = 10000;
         waveEndedTimeMS = 0;
-        timeBetweenSpawnsMS = 2000;
+        timeBetweenSpawnsMS = 350;
         alreadySpanedEnemyNum = 0;
         numOfEnemyes = 5;
         rng = new Random();
