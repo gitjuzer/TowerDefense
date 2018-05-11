@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.RectF;
 
 import com.example.guth27.progtech.GameObjectHolder;
 
@@ -58,12 +59,14 @@ public class Turret implements GameObject, ISelectable {
 
 
     @Override
-    public void OnSelected(GameObject previouslySelected) {
+    public void OnSelected(GameObject previouslySelected)
+    {
         hasOutLine = true;
     }
 
     @Override
-    public void OnUnSelected(GameObject previouslySelected) {
+    public void OnUnSelected(GameObject previouslySelected)
+    {
         hasOutLine = false;
     }
 
@@ -72,6 +75,7 @@ public class Turret implements GameObject, ISelectable {
 
         state.DrawTurret(canvas, baseRect, middleRect, outLine, hasOutLine, shootingStrategy.Type());
 
+
         Paint paint = new Paint();
         paint.setColor(shootColor);
         paint.setStrokeWidth(10);
@@ -79,9 +83,15 @@ public class Turret implements GameObject, ISelectable {
             for (GameObject object : targets) {
                 Point p2 = object.GetPosition();
                 canvas.drawLine(p.x, p.y, p2.x, p2.y, paint);
+
             }
+
         }
         //System.out.println("draw");
+
+     //  canvas.drawOval(CircleOutLine,test1);
+      //  canvas.drawOval(middleCircle,test);
+
     }
 
 

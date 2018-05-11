@@ -58,6 +58,7 @@ public class NormalEnemy extends EnemyStrategy
     public void Draw(Canvas canvas, RectF rect)
     {
         canvas.drawOval(rect,this.paint);
+
     }
 
     @Override
