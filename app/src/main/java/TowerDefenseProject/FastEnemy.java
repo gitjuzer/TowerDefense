@@ -58,6 +58,19 @@ public class FastEnemy extends EnemyStrategy
     @Override
     public void CheckWave(int wave)
     {
+        if(wave < 5)
         SetHealth(8 + wave);
+        else if(wave < 10)
+        SetHealth(15 + wave);
+        else if(wave < 15)
+        SetHealth(20 + wave);
+        else if(wave < 20)
+        SetHealth(25 + wave);
+        else if(wave < 25)
+        SetHealth(30 + wave);
+        else if(wave < 30)
+        SetHealth(40 + wave);
+        else if(wave < 35)
+        SetHealth(50 + wave);
     }
 }

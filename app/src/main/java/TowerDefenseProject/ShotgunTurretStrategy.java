@@ -28,9 +28,9 @@ public class ShotgunTurretStrategy extends TurretStrategy {
     {
         enemies = new ArrayList<>();
         validTargets = new ArrayList<>();
-        framesBetweenShots = 30;
+        framesBetweenShots = 40;
         framesUntilNextShot = 0;
-        maxTargets = 5;
+        maxTargets = 4;
         alreadyTargeting = 0;
 
         fireRange = 350;
