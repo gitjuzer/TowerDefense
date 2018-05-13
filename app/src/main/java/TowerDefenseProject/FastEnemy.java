@@ -13,7 +13,7 @@ public class FastEnemy extends EnemyStrategy
 
     public  FastEnemy(int wave)
     {
-        SetSpeed(10);
+        SetSpeed(8);
         CheckWave(wave);
         this.paint = new Paint();
         this.paint.setColor(Color.MAGENTA);
@@ -58,17 +58,16 @@ public class FastEnemy extends EnemyStrategy
     @Override
     public void CheckWave(int wave)
     {
-        if(wave<=5)
-        {
+        if(wave<=5) {
+            SetHealth(10);
+        }
+        else if (5<wave && wave<=10) {
+            SetHealth(15);
+        }
+        if (10<wave && wave<=15) {
+            SetHealth(25);
+        } else{
             SetHealth(30);
-        }
-        else if (5<wave && wave<=10)
-        {
-            SetHealth(40);
-        }
-        else
-        {
-            SetHealth(60);
         }
     }
 }

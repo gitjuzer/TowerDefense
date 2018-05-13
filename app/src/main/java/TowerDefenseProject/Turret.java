@@ -56,6 +56,8 @@ public class Turret implements GameObject, ISelectable, IObserver {
         turretType = shootingStrategy.Type();
         state = new StateLevel1();
 
+        this.shootingStrategy.SetFireRange((int)(this.state.GetRange(this.GetLabel()) * 1.2));
+
         Game.RegisterToNotifier(this);
     }
 
@@ -117,10 +119,11 @@ public class Turret implements GameObject, ISelectable, IObserver {
 
     public void Upgrade()
     {
-        if(level < 3) {
+        if(level < 3 && Game.Buy(100)) {
             if (level == 1) state = new StateLevel2();
             else if (level == 2) state = new StateLevel3();
             level++;
+            this.shootingStrategy.SetFireRange((int)(this.state.GetRange(this.GetLabel()) * 1.2));
         }
     }
 
@@ -161,6 +164,7 @@ public class Turret implements GameObject, ISelectable, IObserver {
 
     @Override
     public void ReceiveNotification(DayNight state) {
-        System.out.println(state);
+       if(state == DayNight.Day) this.shootingStrategy.SetFireRange(this.state.GetRange(this.GetLabel()));
+       else this.shootingStrategy.SetFireRange((int)(this.state.GetRange(this.GetLabel()) * 0.8));
     }
 }

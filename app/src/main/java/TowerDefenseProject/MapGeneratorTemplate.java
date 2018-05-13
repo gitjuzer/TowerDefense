@@ -27,7 +27,7 @@ public abstract class MapGeneratorTemplate {
 
     int a,b;
 
-    int piecesWidth, piecesHeight;
+    public static int piecesWidth, piecesHeight;
 
     public void CreateMap(){
 
@@ -46,19 +46,23 @@ public abstract class MapGeneratorTemplate {
         EnemyGoalGenerate();
         BuyablesGenerate();
         UpgradeButtonGenerate();
-
+        StringDrawerGenerate();
     }
 
     protected abstract int SetPathLenght();
 
+    void StringDrawerGenerate() {
+        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer2(new ScreenStrings());
+    }
+
     void UpgradeButtonGenerate(){
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Upgrade(3*this.width,this.height, new Point((int)(Info.GetScreenWidth() - 2*this.width),(int)(Info.GetScreenHeight() - (1.5*this.height)))));
+        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Upgrade(3*this.width,this.height, new Point((int)(Info.GetScreenWidth() - 2*this.width),(int)(Info.GetScreenHeight() - (1.6*this.height)))));
     }
 
     void BuyablesGenerate(){
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(this.width + min,(int)(Info.GetScreenHeight() - (1.5*this.height))),"Simple", this.width, this.height));
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(3*this.width + min,(int)(Info.GetScreenHeight() - (1.5*this.height))),"Shotgun", this.width, this.height));
-        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(5*this.width + min,(int)(Info.GetScreenHeight() - (1.5*this.height))),"Strong", this.width, this.height));
+        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(this.width + min,(int)(Info.GetScreenHeight() - (1.6*this.height))),"Simple", this.width, this.height));
+        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(3*this.width + min,(int)(Info.GetScreenHeight() - (1.6*this.height))),"Shotgun", this.width, this.height));
+        GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(5*this.width + min,(int)(Info.GetScreenHeight() - (1.6*this.height))),"Strong", this.width, this.height));
     }
 
     void EnemyGoalGenerate(){

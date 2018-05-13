@@ -48,36 +48,35 @@ public class Game extends AbstractGame {
     @Override
     public void Start(){
         notifier.NotifyObservers(current);
-        //super.SetBackGroundColor(Color.LTGRAY);
+        HP = 30;
+        GamePoints = 400;
+
         MapGenerator generator = new MapGenerator();
         generator.CreateMap();
-        //super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(route.get(0)));
+
         super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(route.get(0)));
-
-
-       // GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(route.get(0), 30,30, new FastEnemy(1)));
-        //GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(route.get(0), 30,30, new NormalEnemy(1)));
-        //GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(route.get(0), 30,30, new StrongEnemy(1)));
-
-
     }
 
     @Override
     public void Update() {
-        //if hp == 0 end
-        if(current == DayNight.Day){
-            if(Info.GetTotalRunningTimeMS() - currentStartTime > dayTime){
-
-                current = DayNight.Night;
-                notifier.NotifyObservers(current);
-                currentStartTime = Info.GetTotalRunningTimeMS();
+        if (HP > 0) {
+            if (current == DayNight.Day) {
+                if (Info.GetTotalRunningTimeMS() - currentStartTime > dayTime) {
+                    current = DayNight.Night;
+                    notifier.NotifyObservers(current);
+                    currentStartTime = Info.GetTotalRunningTimeMS();
+                }
+            } else {
+                if (Info.GetTotalRunningTimeMS() - currentStartTime > nightTime) {
+                    current = DayNight.Day;
+                    notifier.NotifyObservers(current);
+                    currentStartTime = Info.GetTotalRunningTimeMS();
+                }
             }
-        }else{
-            if(Info.GetTotalRunningTimeMS() - currentStartTime > nightTime){
-                current = DayNight.Day;
-                notifier.NotifyObservers(current);
-                currentStartTime = Info.GetTotalRunningTimeMS();
-            }
+        } else
+        {
+            GameObjectHolder.GetInstance().RemoveAll();
+            this.Start();
         }
     }
 
@@ -86,9 +85,6 @@ public class Game extends AbstractGame {
     {
         route = points;
         lastPoint = points.get(points.size() - 1);
-    }
-    public static Point GetLastPoint(){
-        return lastPoint;
     }
     public static Point GetNextRoutePoint(int i)
     {
@@ -100,7 +96,7 @@ public class Game extends AbstractGame {
     public static void AddGamePoint(int i) {
         GamePoints += i;
     }
-    public boolean Buy(int cost)
+    public static boolean Buy(int cost)
     {
         if(GamePoints >= cost){
             GamePoints -= cost;
@@ -108,9 +104,15 @@ public class Game extends AbstractGame {
         }
         return false;
     }
+    public static int GetPointVolume(){
+        return GamePoints;
+    }
     public static void MinusHP(int hp)
     {
         HP -= hp;
+    }
+    public static int GetHpVolume(){
+        return HP;
     }
 
     public static void RegisterToNotifier(IObserver observer){

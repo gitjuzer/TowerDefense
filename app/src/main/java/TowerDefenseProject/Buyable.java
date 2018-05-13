@@ -38,7 +38,7 @@ public class Buyable implements GameObject, IMovable {
         base = new Rect(p.x - width/2, p.y - height/2,p.x + width/2, p.y + height/2);
         middle = new Rect(p.x - width/4, p.y - height/4,p.x + width/4, p.y + height/4);
 
-        timeBeforeRePostion = 250;
+        timeBeforeRePostion = 400;
     }
 
     @Override

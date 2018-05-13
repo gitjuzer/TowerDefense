@@ -83,7 +83,6 @@ public class Spawner implements GameObject {
                             GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(spawnLocation.x,spawnLocation.y), 30,30, new FastEnemy(wave)));
                         else
                             GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Enemy(new Point(spawnLocation.x,spawnLocation.y), 30,30, new StrongEnemy(wave)));
-                        System.out.println(random);
                         enemyIsSpawnedMS = Info.GetTotalRunningTimeMS();
                         alreadySpanedEnemyNum++;
                     }
@@ -96,7 +95,7 @@ public class Spawner implements GameObject {
 
     private void SetUpNextWave() {
        alreadySpanedEnemyNum = 0;
-       numOfEnemyes += 2;
+       numOfEnemyes += 1;
        this.wave++;
     }
 

@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import com.example.guth27.progtech.Info;
+
 /**
  * Created by guth2 on 2018. 04. 29..
  */
@@ -19,9 +21,9 @@ public class StateLevel2 extends TurretState {
 
     @Override
     public int GetRange(String turretType) {
-        if(turretType.equals("Simple")) return 600;
-        else if(turretType.equals("Shotgun")) return 425;
-        else return 500;
+        if(turretType.equals("Simple")) return (int)((Info.GetScreenWidth() / MapGenerator.piecesWidth) * 3);
+        else if(turretType.equals("Shotgun")) return (int)((Info.GetScreenWidth() / MapGenerator.piecesWidth) * 2);
+        else return (int)((Info.GetScreenWidth() / MapGenerator.piecesWidth) * 2.5);
     }
 
     @Override

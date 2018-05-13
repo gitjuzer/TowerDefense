@@ -38,10 +38,9 @@ public class Upgrade implements GameObject, ISelectable {
     @Override
     public void OnSelected(GameObject previouslySelected) {
         GameObject previous = Info.GetSelectedGameObject();
-        //ha van elég pont
-        if(previous instanceof Turret){
-            ((Turret)previous).Upgrade();
-        }
+            if(previous instanceof Turret){
+                ((Turret)previous).Upgrade();
+            }
     }
 
     @Override

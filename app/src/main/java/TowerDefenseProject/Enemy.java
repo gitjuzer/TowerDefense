@@ -25,6 +25,7 @@ public class Enemy implements GameObject, IObserver {
     private int destinationIndex;
     private EnemyStrategy enemyStrategy;
     private Direction movingDirection;
+    private boolean destroyedByTurret;
 
 
     public Enemy(Point spawnPosition, int width, int height, EnemyStrategy enemyStrategy)
@@ -35,6 +36,7 @@ public class Enemy implements GameObject, IObserver {
         destinationIndex = 1;
         this.enemyStrategy = enemyStrategy;
         currentDestination = Game.GetNextRoutePoint(destinationIndex);
+        destroyedByTurret = false;
     }
 
     @Override
@@ -104,7 +106,8 @@ public class Enemy implements GameObject, IObserver {
 
     @Override
     public void OnDestroy() {
-        Game.AddGamePoint(enemyStrategy.GetReward());
+        if(destroyedByTurret)
+            Game.AddGamePoint(enemyStrategy.GetReward());
     }
 
     @Override
@@ -135,12 +138,14 @@ public class Enemy implements GameObject, IObserver {
     public void DamageTaken(int damage)
     {
         enemyStrategy.SetHealth(enemyStrategy.GetHealth() - damage);
-        if(enemyStrategy.GetHealth() <= 0)
+        if(enemyStrategy.GetHealth() <= 0) {
+            destroyedByTurret = true;
             GameObjectHolder.GetInstance().RemoveGameObjectFromHolder(this);
+        }
     }
 
     @Override
     public void ReceiveNotification(DayNight state) {
-
+        if(state == DayNight.Night) this.enemyStrategy.SetHealth(enemyStrategy.GetHealth() + 10);
     }
 }

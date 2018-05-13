@@ -282,4 +282,19 @@ public class GameObjectHolder {
         layer.remove(object);
         layer.add(object);
     }
+
+    public void RemoveAll(){
+        layer0.clear();
+        layer1.clear();
+        layer2.clear();
+        layer3.clear();
+        layer4.clear();
+        nonDrawable.clear();
+        movables.clear();
+        selectables.clear();
+        triggers.clear();
+        collisionTriggers.clear();
+
+        totalObjects = 0;
+    }
 }

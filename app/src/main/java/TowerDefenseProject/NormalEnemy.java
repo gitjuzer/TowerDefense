@@ -21,7 +21,7 @@ public class NormalEnemy extends EnemyStrategy
     {
         SetSpeed(5);
         CheckWave(wave);
-       this.paint = new Paint();
+        this.paint = new Paint();
         this.paint.setColor(Color.BLUE);
     }
 
@@ -64,17 +64,16 @@ public class NormalEnemy extends EnemyStrategy
     @Override
     public  void CheckWave(int wave)
     {
-        if(wave<=5)
-        {
+        if(wave<=5) {
+            SetHealth(15);
+        }
+        else if (5<wave && wave<=10) {
             SetHealth(20);
         }
-        else if (5<wave && wave<=10)
-        {
-            SetHealth(30);
-        }
-        else
-        {
-            SetHealth(50);
+        else if (10<wave && wave<=15) {
+            SetHealth(35);
+        } else {
+            SetHealth(60);
         }
     }
 
