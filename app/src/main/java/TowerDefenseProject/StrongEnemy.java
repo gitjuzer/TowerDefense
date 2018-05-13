@@ -64,18 +64,18 @@ public class StrongEnemy extends EnemyStrategy
     public void CheckWave(int wave)
     {
         if(wave < 5)
-        SetHealth(20 + wave * 3);
+        SetHealth(25 + wave * 3);
         else if(wave < 10)
-        SetHealth(40 + wave * 3);
-        else if(wave < 15)
         SetHealth(60 + wave * 3);
+        else if(wave < 15)
+        SetHealth(90 + wave * 3);
         else if(wave < 20)
-        SetHealth(80 + wave * 3);
+        SetHealth(130 + wave * 3);
         else if(wave < 25)
-        SetHealth(100 + wave * 3);
+        SetHealth(180 + wave * 3);
         else if(wave < 30)
-        SetHealth(150 + wave * 3);
+        SetHealth(250 + wave * 3);
         else if(wave < 35)
-        SetHealth(200 + wave * 3);
+        SetHealth(300 + wave * 3);
     }
 }

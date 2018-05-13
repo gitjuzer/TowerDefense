@@ -15,9 +15,9 @@ public class StateLevel1 extends  TurretState {
 
     @Override
     public int GetDamage(String turretType) {
-        if(turretType.equals("Simple")) return 5;
+        if(turretType.equals("Simple")) return 7;
         else if(turretType.equals("Shotgun")) return 2;
-        else return 8;
+        else return 10;
     }
 
     @Override

@@ -61,6 +61,11 @@ public class Spawner implements GameObject {
     boolean waitforEnd;
     Random rng;
 
+    public void Restart(){
+        wave = 1;
+        numOfEnemyes = 5;
+    }
+
     @Override
     public void Draw(Canvas canvas) {}
 

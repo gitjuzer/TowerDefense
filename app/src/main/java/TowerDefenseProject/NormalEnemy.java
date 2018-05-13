@@ -67,17 +67,17 @@ public class NormalEnemy extends EnemyStrategy
         if (wave < 5)
             SetHealth(10 + wave * 2);
         else if(wave < 10)
-            SetHealth(20 + wave * 2);
+            SetHealth(30 + wave * 2);
         else if(wave < 15)
-            SetHealth(40 + wave * 2);
+            SetHealth(50 + wave * 2);
         else if(wave < 20)
-            SetHealth(60 + wave * 2);
-        else if(wave < 25)
             SetHealth(80 + wave * 2);
+        else if(wave < 25)
+            SetHealth(110 + wave * 2);
         else if(wave < 30)
-            SetHealth(100 + wave * 2);
+            SetHealth(150 + wave * 2);
         else if(wave < 35)
-            SetHealth(120 + wave * 2);
+            SetHealth(200 + wave * 2);
     }
 
 }

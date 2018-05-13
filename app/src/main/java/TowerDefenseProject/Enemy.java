@@ -146,6 +146,6 @@ public class Enemy implements GameObject, IObserver {
 
     @Override
     public void ReceiveNotification(DayNight state) {
-        if(state == DayNight.Night) this.enemyStrategy.SetHealth(enemyStrategy.GetHealth() + 10);
+        if(state == DayNight.Night) this.enemyStrategy.SetSpeed(enemyStrategy.GetSpeed() + 2);
     }
 }

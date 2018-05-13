@@ -29,7 +29,7 @@ public class SimpleTurretStrategy extends TurretStrategy {
     {
         enemies = new ArrayList<>();
         validTargets = new ArrayList<>();
-        framesBetweenShots = 30;
+        framesBetweenShots = 20;
         framesUntilNextShot = 0;
         maxTargets = 1;
         alreadyTargeting = 0;

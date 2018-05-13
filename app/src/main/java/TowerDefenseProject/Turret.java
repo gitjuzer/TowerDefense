@@ -119,12 +119,28 @@ public class Turret implements GameObject, ISelectable, IObserver {
 
     public void Upgrade()
     {
-        if(level < 3 && Game.Buy(150)) {
-            if (level == 1) state = new StateLevel2();
-            else if (level == 2) state = new StateLevel3();
-            level++;
-            this.shootingStrategy.SetFireRange((int)(this.state.GetRange(this.GetLabel()) * 1.2));
-        }
+        if(this.shootingStrategy.Type() == "Simple") {
+            if (level < 3 && Game.Buy(150)) {
+                if (level == 1) state = new StateLevel2();
+                else if (level == 2) state = new StateLevel3();
+                level++;
+                this.shootingStrategy.SetFireRange((int) (this.state.GetRange(this.GetLabel()) * 1.2));
+            }
+        } else if(this.shootingStrategy.Type() == "Shotgun") {
+            if (level < 3 && Game.Buy(200)) {
+                if (level == 1) state = new StateLevel2();
+                else if (level == 2) state = new StateLevel3();
+                level++;
+                this.shootingStrategy.SetFireRange((int) (this.state.GetRange(this.GetLabel()) * 1.2));
+            }
+        } else{
+                if (level < 3 && Game.Buy(250)) {
+                    if (level == 1) state = new StateLevel2();
+                    else if (level == 2) state = new StateLevel3();
+                    level++;
+                    this.shootingStrategy.SetFireRange((int) (this.state.GetRange(this.GetLabel()) * 1.2));
+                }
+            }
     }
 
     private int GetDamage()
