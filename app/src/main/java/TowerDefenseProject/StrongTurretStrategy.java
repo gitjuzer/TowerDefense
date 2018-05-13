@@ -28,7 +28,7 @@ public class StrongTurretStrategy extends TurretStrategy {
     {
         enemies = new ArrayList<>();
         validTargets = new ArrayList<>();
-        framesBetweenShots = 60;
+        framesBetweenShots = 45;
         framesUntilNextShot = 0;
         maxTargets = 1;
         alreadyTargeting = 0;

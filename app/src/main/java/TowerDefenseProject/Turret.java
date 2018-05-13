@@ -104,7 +104,6 @@ public class Turret implements GameObject, ISelectable, IObserver {
         if(targets.size() > 0){
             for(GameObject object : targets){
                 ((Enemy)object).DamageTaken(GetDamage());
-                System.out.println("T:damage" + GetDamage());
             }
         }
 
@@ -113,7 +112,6 @@ public class Turret implements GameObject, ISelectable, IObserver {
         targets.clear();
         if(shootingStrategy.CanShoot())
         {
-            System.out.println("T:shoot");
             targets = shootingStrategy.Targets();
 
         }

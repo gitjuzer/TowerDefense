@@ -46,7 +46,7 @@ public class FastEnemy extends EnemyStrategy
     @Override
     public int GetReward()
     {
-        return 8;
+        return 10;
     }
 
     @Override
