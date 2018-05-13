@@ -10,6 +10,7 @@ import com.example.guth27.progtech.Info;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Interfaces.GameObject;
 
@@ -51,8 +52,18 @@ public class Game extends AbstractGame {
         HP = 30;
         GamePoints = 600;
 
-        MapGenerator generator = new MapGenerator();
-        generator.CreateMap();
+        Random rng = new Random();
+        int n = rng.nextInt(3);
+        if(n == 0) {
+            MapGenerator generator = new MapGenerator();
+            generator.CreateMap();
+        } else if(n == 1){
+            MapGenerator2 generator = new MapGenerator2();
+            generator.CreateMap();
+        } else{
+            MapGenerator3 generator = new MapGenerator3();
+            generator.CreateMap();
+        }
 
         super.Holder.AddGameObjectToHolderNonDrawable(Spawner.GetInstance(route.get(0)));
     }
