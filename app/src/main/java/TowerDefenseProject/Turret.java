@@ -119,7 +119,7 @@ public class Turret implements GameObject, ISelectable, IObserver {
 
     public void Upgrade()
     {
-        if(level < 3 && Game.Buy(100)) {
+        if(level < 3 && Game.Buy(150)) {
             if (level == 1) state = new StateLevel2();
             else if (level == 2) state = new StateLevel3();
             level++;

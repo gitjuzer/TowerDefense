@@ -49,7 +49,7 @@ public class Game extends AbstractGame {
     public void Start(){
         notifier.NotifyObservers(current);
         HP = 30;
-        GamePoints = 400;
+        GamePoints = 600;
 
         MapGenerator generator = new MapGenerator();
         generator.CreateMap();

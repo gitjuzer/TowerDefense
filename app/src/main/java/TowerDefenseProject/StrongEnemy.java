@@ -51,7 +51,7 @@ public class StrongEnemy extends EnemyStrategy
 
     @Override
     public int GetReward() {
-        return 30;
+        return 15;
     }
 
     @Override
@@ -63,16 +63,6 @@ public class StrongEnemy extends EnemyStrategy
     @Override
     public void CheckWave(int wave)
     {
-        if(wave<=5) {
-            SetHealth(30);
-        }
-        else if (5<wave && wave<=10) {
-            SetHealth(45);
-        }
-        else if (10<wave && wave<=15) {
-            SetHealth(70);
-        } else{
-            SetHealth(100);
-        }
+        SetHealth(20 + wave * 3);
     }
 }

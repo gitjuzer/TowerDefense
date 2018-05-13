@@ -60,7 +60,7 @@ public class TurretBase implements GameObject {
                     if(this.BetweenBoundaries(imovableP.x,imovableP.y)) {
                         turretType = ((GameObject) m).GetLabel();
                         ((Buyable) m).ResetPos();
-                        if(Game.Buy(100)) {
+                        if((turretType == "Simple" && Game.Buy(100))||(turretType == "Shotgun" && Game.Buy(150))||(turretType == "Strong" && Game.Buy(200))) {
                             GameObjectHolder.GetInstance().RemoveGameObjectFromHolder(this);
                         }
                     }

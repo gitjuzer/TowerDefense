@@ -279,8 +279,7 @@ public class GameObjectHolder {
     }
     private void PutOnTop(List<GameObject> layer, GameObject object)
     {
-        layer.remove(object);
-        layer.add(object);
+        layer.add(0,object);
     }
 
     public void RemoveAll(){
