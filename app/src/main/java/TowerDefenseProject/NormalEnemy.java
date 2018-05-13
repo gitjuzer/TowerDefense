@@ -51,7 +51,7 @@ public class NormalEnemy extends EnemyStrategy
 
     @Override
     public int GetReward() {
-        return 5;
+        return 10;
     }
 
     @Override
