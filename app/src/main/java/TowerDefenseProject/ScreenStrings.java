@@ -24,7 +24,7 @@ public class ScreenStrings implements GameObject, IObserver {
     public ScreenStrings(){
         textPaint = new Paint();
         textPaint.setColor(Color.RED);
-        textPaint.setTextSize(50);
+        textPaint.setTextSize(Info.GetScreenWidth()/20);
         textPaint.setTextAlign(Paint.Align.CENTER);
 
         dayTime="Day";
