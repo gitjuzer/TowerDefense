@@ -14,9 +14,9 @@ import com.example.guth27.progtech.Info;
 public class StateLevel2 extends TurretState {
     @Override
     public int GetDamage(String turretType) {
-        if(turretType.equals("Simple")) return 15;
-        else if(turretType.equals("Shotgun")) return 5;
-        else return 30;
+        if(turretType.equals("Simple")) return 25;
+        else if(turretType.equals("Shotgun")) return 15;
+        else return 60;
     }
 
     @Override

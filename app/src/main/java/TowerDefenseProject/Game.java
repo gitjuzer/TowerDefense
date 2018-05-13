@@ -87,6 +87,7 @@ public class Game extends AbstractGame {
         } else
         {
             GameObjectHolder.GetInstance().RemoveAll();
+            Spawner.GetInstance(route.get(0)).Restart();
             this.Start();
         }
     }
