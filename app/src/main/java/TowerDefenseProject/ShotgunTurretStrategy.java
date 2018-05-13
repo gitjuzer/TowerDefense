@@ -72,7 +72,7 @@ public class ShotgunTurretStrategy extends TurretStrategy {
 
     @Override
     public boolean CanShoot() {
-        if(framesUntilNextShot == 0) {
+        if(framesUntilNextShot <= 0) {
             framesUntilNextShot = framesBetweenShots;
             return true;
         }

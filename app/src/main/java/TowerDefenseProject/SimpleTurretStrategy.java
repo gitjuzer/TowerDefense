@@ -74,7 +74,8 @@ public class SimpleTurretStrategy extends TurretStrategy {
 
     @Override
     public boolean CanShoot() {
-        if(framesUntilNextShot == 0) {
+        //System.out.println("T:" + framesUntilNextShot);
+        if(framesUntilNextShot <= 0) {
             framesUntilNextShot = framesBetweenShots;
             return true;
         }

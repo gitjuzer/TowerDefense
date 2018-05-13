@@ -104,6 +104,7 @@ public class Turret implements GameObject, ISelectable, IObserver {
         if(targets.size() > 0){
             for(GameObject object : targets){
                 ((Enemy)object).DamageTaken(GetDamage());
+                System.out.println("T:damage" + GetDamage());
             }
         }
 
@@ -112,6 +113,7 @@ public class Turret implements GameObject, ISelectable, IObserver {
         targets.clear();
         if(shootingStrategy.CanShoot())
         {
+            System.out.println("T:shoot");
             targets = shootingStrategy.Targets();
 
         }
@@ -124,6 +126,8 @@ public class Turret implements GameObject, ISelectable, IObserver {
                 if (level == 1) state = new StateLevel2();
                 else if (level == 2) state = new StateLevel3();
                 level++;
+                this.shootingStrategy = new SimpleTurretStrategy();
+                shootingStrategy.SetPoint(p);
                 this.shootingStrategy.SetFireRange((int) (this.state.GetRange(this.GetLabel()) * 1.2));
             }
         } else if(this.shootingStrategy.Type() == "Shotgun") {
@@ -131,6 +135,8 @@ public class Turret implements GameObject, ISelectable, IObserver {
                 if (level == 1) state = new StateLevel2();
                 else if (level == 2) state = new StateLevel3();
                 level++;
+                this.shootingStrategy = new ShotgunTurretStrategy();
+                shootingStrategy.SetPoint(p);
                 this.shootingStrategy.SetFireRange((int) (this.state.GetRange(this.GetLabel()) * 1.2));
             }
         } else{
@@ -138,6 +144,8 @@ public class Turret implements GameObject, ISelectable, IObserver {
                     if (level == 1) state = new StateLevel2();
                     else if (level == 2) state = new StateLevel3();
                     level++;
+                    this.shootingStrategy = new StrongTurretStrategy();
+                    shootingStrategy.SetPoint(p);
                     this.shootingStrategy.SetFireRange((int) (this.state.GetRange(this.GetLabel()) * 1.2));
                 }
             }
