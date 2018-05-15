@@ -108,6 +108,7 @@ public class Enemy implements GameObject, IObserver {
     public void OnDestroy() {
         if(destroyedByTurret)
             Game.AddGamePoint(enemyStrategy.GetReward());
+        Game.RemoveFromNotifier(this);
     }
 
     @Override

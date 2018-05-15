@@ -13,12 +13,50 @@ import android.graphics.Point;
  */
 
 public interface GameObject {
+    /**
+     * Runs once every frame. Every draw on canvas should be here.
+     * @param canvas
+     */
     void Draw(Canvas canvas);
+
+    /**
+     * runs once every frame. Object behaviour comes here.
+     */
     void Update();
+
+    /**
+     * runs down when the object is destroyed.
+     */
     void OnDestroy();
+
+    /**
+     * Set the label(tag) of the gameObject.
+     * @return String
+     */
     String GetLabel();
+
+    /**
+     * Runs when the gameObject is instantiated.
+     */
     void Start();
+
+    /**
+     * Returns the midpoint of the gameObject.
+     * @return Point
+     */
     Point GetPosition();
+
+    /**
+     * Returns if the gameObject is a trigger or not for ICollisionTrigger objects
+     * @return boolean
+     */
     boolean IsTrigger();
+
+    /**
+     * Checks if the point is between the boundaries of this gameObject.
+     * @param x
+     * @param y
+     * @return boolean
+     */
     boolean BetweenBoundaries(int x, int y);
 }

@@ -130,5 +130,8 @@ public class Game extends AbstractGame {
     public static void RegisterToNotifier(IObserver observer){
         notifier.RegisterObserver(observer);
     }
+    public static  void RemoveFromNotifier(IObserver observer){
+        notifier.RemoveObserver(observer);
+    }
 
 }

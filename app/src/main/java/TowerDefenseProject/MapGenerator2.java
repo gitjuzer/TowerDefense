@@ -6,7 +6,7 @@ package TowerDefenseProject;
 
 public class MapGenerator2 extends MapGeneratorTemplate {
     @Override
-    protected int SetPathLenght() {
+    protected int SetPathLength() {
         return 33;
     }
 

@@ -5,5 +5,9 @@ package TowerDefenseProject;
  */
 
 public interface IObserver {
+    /**
+     * Receive the notification about the current state of gameTime
+     * @param state
+     */
     void ReceiveNotification(DayNight state);
 }

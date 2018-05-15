@@ -1,10 +1,7 @@
 package TowerDefenseProject;
 
 import android.graphics.Color;
-import android.graphics.Path;
 import android.graphics.Point;
-import android.service.quicksettings.Tile;
-import android.text.Layout;
 
 import com.example.guth27.progtech.GameObjectHolder;
 import com.example.guth27.progtech.Info;
@@ -29,6 +26,13 @@ public abstract class MapGeneratorTemplate {
 
     public static int piecesWidth, piecesHeight;
 
+    /**
+     *The template for creating a new map.
+     * 1. Setting the width and height for one base element.
+     * 2. Getting the coordinates for all the turretbase GameObjects
+     * 3. Creating the layout with the path for the enemies
+     * 4. Creating the other UI elements
+     */
     public void CreateMap(){
 
         piecesWidth = SetWidth();
@@ -39,7 +43,7 @@ public abstract class MapGeneratorTemplate {
         SplitScreen();
         layout = new TileType[piecesWidth][piecesHeight];
         layout = CreateLayout();
-        pathlenght = SetPathLenght();
+        pathlenght = SetPathLength();
         GenerateLayout();
         GeneratePath();
 
@@ -49,26 +53,45 @@ public abstract class MapGeneratorTemplate {
         StringDrawerGenerate();
     }
 
-    protected abstract int SetPathLenght();
+    /**
+     * Set the lenght of the path in the game map
+     * @return int
+     */
+    protected abstract int SetPathLength();
 
+    /**
+     * Create the string UI elements
+     */
     void StringDrawerGenerate() {
         GameObjectHolder.GetInstance().AddGameObjectToHolderLayer2(new ScreenStrings());
     }
 
+    /**
+     * Create the Upgrade button
+     */
     void UpgradeButtonGenerate(){
         GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Upgrade(3*this.width,this.height, new Point((int)(Info.GetScreenWidth() - 2*this.width),(int)(Info.GetScreenHeight() - (1.6*this.height)))));
     }
 
+    /**
+     * Create the three buyable turret gameObjects
+     */
     void BuyablesGenerate(){
         GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(this.width + min,(int)(Info.GetScreenHeight() - (1.6*this.height))),"Simple", this.width, this.height));
         GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(3*this.width + min,(int)(Info.GetScreenHeight() - (1.6*this.height))),"Shotgun", this.width, this.height));
         GameObjectHolder.GetInstance().AddGameObjectToHolderLayer1(new Buyable(new Point(5*this.width + min,(int)(Info.GetScreenHeight() - (1.6*this.height))),"Strong", this.width, this.height));
     }
 
+    /**
+     * Create the enemyGoal gameObject
+     */
     void EnemyGoalGenerate(){
         GameObjectHolder.GetInstance().AddGameObjectToHolderLayer0(new EnemyGoal(9*this.width, 3*this.height, new Point((int)(Info.GetScreenWidth()/2), (int)(Info.GetScreenHeight() - (1.5*this.height)))));
     }
 
+    /**
+     * Creates the coordinates for the map according to the width and height of the screen and according to the desired width and heigth of the game map.
+     */
     void SplitScreen() {
 
         a = 0;
@@ -83,11 +106,28 @@ public abstract class MapGeneratorTemplate {
             b = 0;
         }
     }
+
+    /**
+     * Set the width of the game map
+     * @return int
+     */
     protected abstract int SetWidth();
+
+    /**
+     * Set the height of the game map
+     * @return int
+     */
     protected abstract int SetHeight();
 
+    /**
+     * Create the layout of the game map using the TileType enum
+     * @return TileType[][]
+     */
     protected abstract TileType[][] CreateLayout();
 
+    /**
+     * Creates the turretbases on the given coordinates
+     */
     void GenerateLayout(){
         for(int i = 0; i < piecesWidth; i++){
             for(int j = 0; j < piecesHeight; j++) {
@@ -97,6 +137,10 @@ public abstract class MapGeneratorTemplate {
             }
         }
     }
+
+    /**
+     * Finds and saves the path for the Enemy gameObjects. Saves them in a list.
+     */
     void GeneratePath() {
         int x = 0; int y = 0;
         List<Point> path = new ArrayList<>();
@@ -227,6 +271,12 @@ public abstract class MapGeneratorTemplate {
         Game.SetRoutePoints(path);
     }
 
+    /**
+     * Checks if the p point is in the list
+     * @param p-point
+     * @param list-list of points
+     * @return boolean
+     */
     boolean Contains(Point p, List<Point> list)
     {
         for(Point p2: list) {

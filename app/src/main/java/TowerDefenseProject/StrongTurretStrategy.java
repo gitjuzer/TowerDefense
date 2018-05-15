@@ -83,7 +83,7 @@ public class StrongTurretStrategy extends TurretStrategy {
     }
 
     @Override
-    public void GetOpponents(List<GameObject> enemies) {
+    public void SetOpponents(List<GameObject> enemies) {
         this.enemies = enemies;
     }
 
@@ -96,14 +96,6 @@ public class StrongTurretStrategy extends TurretStrategy {
     public int LaserColor() {
         return Color.argb(255,165, 0, 0);
     }
-   //@Override
-   //public int GetDamage() {
-   //    return damage;
-   //}
 
-   //@Override
-   //public void SetDamage(int damage) {
-   //    this.damage = damage;
-   //}
 
 }

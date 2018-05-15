@@ -7,6 +7,16 @@ package Interfaces;
  */
 
 public interface ICollisionTrigger {
+    /**
+     * Runs when collides with a trigger object
+     * @param other-The other gameObject that this object is collided
+     */
     void OnTriggerEnter(GameObject other);
+    /**
+     * Checks if the point is between the boundaries of this gameObject.
+     * @param x
+     * @param y
+     * @return boolean
+     */
     boolean BetweenBoundaries(int x, int y);
 }

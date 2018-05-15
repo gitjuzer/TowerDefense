@@ -81,7 +81,7 @@ public class ShotgunTurretStrategy extends TurretStrategy {
     }
 
     @Override
-    public void GetOpponents(List<GameObject> enemies) {
+    public void SetOpponents(List<GameObject> enemies) {
         this.enemies = enemies;
     }
 

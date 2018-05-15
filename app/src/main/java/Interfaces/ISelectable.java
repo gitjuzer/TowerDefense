@@ -8,7 +8,23 @@ import Interfaces.GameObject;
  */
 
 public interface ISelectable {
+    /**
+     * Checks if the point is between the boundaries of this gameObject.
+     * @param x
+     * @param y
+     * @return boolean
+     */
     boolean BetweenBoundaries(int x, int y);
+
+    /**
+     * Runs when the object is selected.
+     * @param previouslySelected - the previously selected gameObject
+     */
     void OnSelected(GameObject previouslySelected);
+
+    /**
+     * Runs when the object is unselected.
+     * @param previouslySelected - the previously selected gameObject
+     */
     void OnUnSelected(GameObject previouslySelected);
 }

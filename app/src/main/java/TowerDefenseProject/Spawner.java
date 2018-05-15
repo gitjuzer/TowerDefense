@@ -21,6 +21,11 @@ public class Spawner implements GameObject {
 
     private Point spawnLocation;
 
+    /**
+     * Use this to get the only instance of this class.
+     * @param spawnLocation - the location where the enemies should be instantiated.
+     * @return Spawner - the only instance of this class
+     */
     public static Spawner GetInstance(Point spawnLocation)
     {
         if (uniqueInstance==null)
@@ -61,6 +66,9 @@ public class Spawner implements GameObject {
     boolean waitforEnd;
     Random rng;
 
+    /**
+     * Use this to restart the spawning from wave one.
+     */
     public void Restart(){
         wave = 1;
         numOfEnemyes = 5;
@@ -98,6 +106,9 @@ public class Spawner implements GameObject {
 
     }
 
+    /**
+     * Scales the difficulty of the next wave.
+     */
     private void SetUpNextWave() {
        alreadySpanedEnemyNum = 0;
        numOfEnemyes += 1;

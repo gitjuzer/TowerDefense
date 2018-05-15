@@ -1,11 +1,9 @@
 package TowerDefenseProject;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.RectF;
 
 import com.example.guth27.progtech.GameObjectHolder;
 
@@ -108,7 +106,7 @@ public class Turret implements GameObject, ISelectable, IObserver {
         }
 
         enemies = GameObjectHolder.GetInstance().GetAllGameObjectWithLable("Enemy");
-        shootingStrategy.GetOpponents(enemies);
+        shootingStrategy.SetOpponents(enemies);
         targets.clear();
         if(shootingStrategy.CanShoot())
         {

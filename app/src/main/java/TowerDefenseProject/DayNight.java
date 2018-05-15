@@ -5,5 +5,5 @@ package TowerDefenseProject;
  */
 
 public enum DayNight {
-    Day, Night;
+    Day, Night
 }

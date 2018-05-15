@@ -18,7 +18,7 @@ public class MapGenerator extends MapGeneratorTemplate {
 
 
     @Override
-    protected int SetPathLenght() {
+    protected int SetPathLength() {
         return 28;
     }
 
