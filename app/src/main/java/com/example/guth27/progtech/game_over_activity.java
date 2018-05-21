@@ -27,7 +27,7 @@ public class game_over_activity extends AppCompatActivity implements View.OnClic
         switch (v.getId())
         {
             case R.id.backStartBT:
-                Intent intent = new Intent(this,start_activity.class);
+               // Intent intent = new Intent(this, View.start_activity.class);
                 break;
         }
 

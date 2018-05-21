@@ -1,7 +1,5 @@
 package com.example.guth27.progtech;
 
-import Interfaces.GameObject;
-
 /**
  * Created by guth2 on 2018. 04. 26.
  * The abstract class the game. Makes the gameobjectHolder accessable.

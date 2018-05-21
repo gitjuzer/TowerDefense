@@ -7,6 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.guth27.progtech.DatabaseHelper;
+import com.example.guth27.progtech.R;
+import com.example.guth27.progtech.User;
+import com.example.guth27.progtech.myListAdapter;
+
 import java.util.ArrayList;
 
 public class ListDataView_activity extends AppCompatActivity implements View.OnClickListener {
@@ -34,7 +39,6 @@ public class ListDataView_activity extends AppCompatActivity implements View.OnC
         this.databaseHelper = new DatabaseHelper(this);
         this.userlist = new ArrayList<User>();
         Cursor data = this.databaseHelper.getData();
-        int rowNum = data.getCount();
 
 
         while (data.moveToNext())

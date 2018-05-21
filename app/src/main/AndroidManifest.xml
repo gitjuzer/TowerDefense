@@ -20,8 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListDataView_activity" />
-        <activity android:name=".list_adapter_view" />
-        <activity android:name=".game_over_activity"></activity>
     </application>
 
 </manifest>

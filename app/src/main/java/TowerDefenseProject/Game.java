@@ -1,25 +1,15 @@
 package TowerDefenseProject;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.Rect;
-import android.widget.Toast;
 
 import com.example.guth27.progtech.AbstractGame;
-import com.example.guth27.progtech.DatabaseHelper;
 import com.example.guth27.progtech.GameObjectHolder;
 import com.example.guth27.progtech.Info;
 import com.example.guth27.progtech.MainActivity;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
-
-import Interfaces.GameObject;
 
 /**
  * Created by guth2 on 2018. 04. 26.
@@ -60,6 +50,7 @@ public class Game extends AbstractGame {
 
     @Override
     public void Start(){
+        //Spawner.GetInstance(route.get(0)).Restart();
         notifier.NotifyObservers(current);
         HP = 5;
         GamePoints = 600;
@@ -101,7 +92,7 @@ public class Game extends AbstractGame {
         {
             if(!end){
             GameObjectHolder.GetInstance().RemoveAll();
-            //Spawner.GetInstance(route.get(0)).Restart();
+            //
             //this.Start();
 
             mainActivity.setScore(GamePoints);
