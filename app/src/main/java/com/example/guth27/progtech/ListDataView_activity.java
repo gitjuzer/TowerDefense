@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class ListDataView_activity extends AppCompatActivity implements View.OnClickListener {
 
     Button back;
+    Button delete;
     public  static  final String TAG = "ListData";
 
     DatabaseHelper databaseHelper;
@@ -27,6 +28,8 @@ public class ListDataView_activity extends AppCompatActivity implements View.OnC
 
         this.back = findViewById(R.id.backBT);
         this.back.setOnClickListener(this);
+        this.delete = findViewById(R.id.deleteData);
+        this.delete.setOnClickListener(this);
 
         this.databaseHelper = new DatabaseHelper(this);
         this.userlist = new ArrayList<User>();
@@ -53,6 +56,11 @@ public class ListDataView_activity extends AppCompatActivity implements View.OnC
             case R.id.backBT:
                 this.finish();
                 break;
+
+            case R.id.deleteData:
+                this.databaseHelper.DeleteAllData();
+                break;
+
         }
     }
 }

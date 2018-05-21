@@ -59,4 +59,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return  data;
     }
 
+    public void DeleteAllData()
+    {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+       // sqLiteDatabase.delete(TABLE_NAME,null,null);
+        sqLiteDatabase.execSQL("DELETE FROM " + TABLE_NAME);
+        sqLiteDatabase.execSQL("SELECT * FROM "+ TABLE_NAME);
+        //sqLiteDatabase.close();
+    }
+
 }
