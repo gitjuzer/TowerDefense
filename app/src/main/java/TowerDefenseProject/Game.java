@@ -28,12 +28,8 @@ import Interfaces.GameObject;
 
 public class Game extends AbstractGame {
 
-    DatabaseHelper databaseHelper;
-    MainActivity main ;
 
-    private Calendar calendar;
-    private SimpleDateFormat simpleDateFormat;
-    private String date;
+    private boolean end;
 
     private static List<Point> route;
     private static Point lastPoint;
@@ -48,9 +44,9 @@ public class Game extends AbstractGame {
     DayNight current;
     private static DayNightNotifier notifier;
 
-    public Game()
+    public Game(MainActivity mainActivity)
     {
-        this.main = new MainActivity();
+        super(mainActivity);
         route = new ArrayList<>();
         HP = 5;
         startTime = Info.GetStartTimeMS();
@@ -59,7 +55,7 @@ public class Game extends AbstractGame {
         dayTime = 25000;
         nightTime = 10000;
         notifier = new DayNightNotifier();
-        this.databaseHelper = new DatabaseHelper(this.main.getContext());
+
     }
 
     @Override
@@ -67,6 +63,7 @@ public class Game extends AbstractGame {
         notifier.NotifyObservers(current);
         HP = 5;
         GamePoints = 600;
+        end = false;
 
         Random rng = new Random();
         int n = rng.nextInt(3);
@@ -102,16 +99,15 @@ public class Game extends AbstractGame {
             }
         } else
         {
+            if(!end){
             GameObjectHolder.GetInstance().RemoveAll();
-            Spawner.GetInstance(route.get(0)).Restart();
+            //Spawner.GetInstance(route.get(0)).Restart();
             //this.Start();
 
-
-//
-            this.calendar = Calendar.getInstance();
-            this.simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            this.date = this.simpleDateFormat.format(this.calendar.getTime());
-            AddData(String.valueOf(GamePoints),date);
+            mainActivity.setScore(GamePoints);
+            mainActivity.finish();
+            end = true;
+            }
         }
     }
 
@@ -157,10 +153,6 @@ public class Game extends AbstractGame {
         notifier.RemoveObserver(observer);
     }
 
-    public  void AddData(String score, String time)
-    {
-        boolean insertData = this.databaseHelper.addData(score,time);
-    }
 
 
 }

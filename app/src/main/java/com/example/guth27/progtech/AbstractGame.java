@@ -10,10 +10,12 @@ import Interfaces.GameObject;
 public abstract class AbstractGame {
 
     protected GameObjectHolder Holder;
+    protected MainActivity mainActivity;
 
-    protected AbstractGame()
+    protected AbstractGame(MainActivity mainActivity)
     {
         this.Holder =GameObjectHolder.GetInstance();
+        this.mainActivity = mainActivity;
     }
 
     public abstract  void Start();

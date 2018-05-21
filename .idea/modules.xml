@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Progtech.iml" filepath="$PROJECT_DIR$/Progtech.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TowerDefense.iml" filepath="$PROJECT_DIR$/TowerDefense.iml" />
+      <module fileurl="file://C:\Users\guth2\Desktop\suli\Android\Progtech\TowerDefense.iml" filepath="C:\Users\guth2\Desktop\suli\Android\Progtech\TowerDefense.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

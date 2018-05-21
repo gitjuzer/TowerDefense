@@ -33,6 +33,8 @@ public class GameObjectHolder {
     private List<GameObject> triggers;
     private List<ICollisionTrigger> collisionTriggers;
 
+    private List<GameObject> removableGameObjects;
+
     public static GameObjectHolder GetInstance()
     {
         if (uniqueInstance==null)
@@ -53,6 +55,8 @@ public class GameObjectHolder {
         selectables = new ArrayList<>();
         triggers = new ArrayList<>();
         collisionTriggers = new ArrayList<>();
+        removableGameObjects = new ArrayList<>();
+
     }
 
     public int NumOfGameObjects(){ return totalObjects; }
@@ -144,17 +148,24 @@ public class GameObjectHolder {
     private void AddICollisionTrigger(ICollisionTrigger collisionTrigger) {collisionTriggers.add(collisionTrigger);}
     private void AddTrigger(GameObject object){triggers.add(object);}
     public void RemoveGameObjectFromHolder(GameObject object) {
-        if(object != null){
-            object.OnDestroy();
-        }
-        boolean found = Remover(layer0, object);
-        if(!found) found = Remover(layer1, object);
-        if(!found) found = Remover(layer2, object);
-        if(!found) found = Remover(layer3, object);
-        if(!found) found = Remover(layer4, object);
-
-        if(!found) System.out.println("NonExistent GameObject at RemoveGameObjectFromHolder");
+        removableGameObjects.add(object);
     }
+    private void RemoveUpdate(){
+        for(GameObject object: removableGameObjects) {
+            if (object != null) {
+                object.OnDestroy();
+            }
+            boolean found = Remover(layer0, object);
+            if (!found) found = Remover(layer1, object);
+            if (!found) found = Remover(layer2, object);
+            if (!found) found = Remover(layer3, object);
+            if (!found) found = Remover(layer4, object);
+
+            if (!found) System.out.println("NonExistent GameObject at RemoveGameObjectFromHolder");
+            else removableGameObjects.remove(object);
+        }
+    }
+
     public void RemoveNonDrawableFromHolder(GameObject object)
     {
         nonDrawable.remove(object);
@@ -193,6 +204,7 @@ public class GameObjectHolder {
         for(GameObject o : layer3) o.Update();
         for(GameObject o : layer4) o.Update();
         for(GameObject o : nonDrawable) o.Update();
+        RemoveUpdate();
     }
     public void DrawAll(Canvas canvas){
 

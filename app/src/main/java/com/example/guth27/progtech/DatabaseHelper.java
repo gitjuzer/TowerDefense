@@ -39,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public  boolean addData( String score, String time)
     {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2,score);
         contentValues.put(COL3,time);

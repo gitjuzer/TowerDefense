@@ -20,6 +20,7 @@ import TowerDefenseProject.Game;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
+    private MainActivity mainActivity;
     private MainThread thread;
     private IMovable selectedIMovable;
     private boolean anObjectIsSelectedForMovement = false;
@@ -31,7 +32,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private int motionEventX, motionEventY;
 
 
-    public GamePanel(Context context)
+    public GamePanel(Context context, MainActivity mainActivity)
     {
         super(context);
 
@@ -40,7 +41,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         thread = new MainThread(getHolder(), this);
 
         holder = GameObjectHolder.GetInstance();
-        game = new Game();
+        game = new Game(mainActivity);
 
         setFocusable(true);
     }
