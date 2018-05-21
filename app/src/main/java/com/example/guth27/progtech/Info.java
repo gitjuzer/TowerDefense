@@ -9,6 +9,8 @@ import Interfaces.GameObject;
  * Created by guth2 on 2018. 04. 22..
  */
 
+
+
 public final class Info {
     private static int lastTapX;
     private static int lastTapY;

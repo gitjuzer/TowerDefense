@@ -1,14 +1,21 @@
 package TowerDefenseProject;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.widget.Toast;
 
 import com.example.guth27.progtech.AbstractGame;
+import com.example.guth27.progtech.DatabaseHelper;
 import com.example.guth27.progtech.GameObjectHolder;
 import com.example.guth27.progtech.Info;
+import com.example.guth27.progtech.MainActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +27,13 @@ import Interfaces.GameObject;
  */
 
 public class Game extends AbstractGame {
+
+    DatabaseHelper databaseHelper;
+    MainActivity main ;
+
+    private Calendar calendar;
+    private SimpleDateFormat simpleDateFormat;
+    private String date;
 
     private static List<Point> route;
     private static Point lastPoint;
@@ -36,20 +50,22 @@ public class Game extends AbstractGame {
 
     public Game()
     {
+        this.main = new MainActivity();
         route = new ArrayList<>();
-        HP = 30;
+        HP = 5;
         startTime = Info.GetStartTimeMS();
         currentStartTime = Info.GetTotalRunningTimeMS();
         current = DayNight.Day;
         dayTime = 25000;
         nightTime = 10000;
         notifier = new DayNightNotifier();
+        this.databaseHelper = new DatabaseHelper(this.main.getContext());
     }
 
     @Override
     public void Start(){
         notifier.NotifyObservers(current);
-        HP = 30;
+        HP = 5;
         GamePoints = 600;
 
         Random rng = new Random();
@@ -88,7 +104,14 @@ public class Game extends AbstractGame {
         {
             GameObjectHolder.GetInstance().RemoveAll();
             Spawner.GetInstance(route.get(0)).Restart();
-            this.Start();
+            //this.Start();
+
+
+//
+            this.calendar = Calendar.getInstance();
+            this.simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            this.date = this.simpleDateFormat.format(this.calendar.getTime());
+            AddData(String.valueOf(GamePoints),date);
         }
     }
 
@@ -133,5 +156,11 @@ public class Game extends AbstractGame {
     public static  void RemoveFromNotifier(IObserver observer){
         notifier.RemoveObserver(observer);
     }
+
+    public  void AddData(String score, String time)
+    {
+        boolean insertData = this.databaseHelper.addData(score,time);
+    }
+
 
 }

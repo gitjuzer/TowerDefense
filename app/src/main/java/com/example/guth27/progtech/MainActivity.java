@@ -1,6 +1,7 @@
 package com.example.guth27.progtech;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
@@ -20,5 +21,13 @@ public class MainActivity extends Activity {
 
         Info.SetStartTime(System.nanoTime());
         setContentView(new GamePanel(this));
+
+
+    }
+
+    public Context getContext()
+    {
+        Context context = new MainActivity();
+        return context;
     }
 }
