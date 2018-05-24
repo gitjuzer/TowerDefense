@@ -56,6 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase database = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
+        Log.d("datas","Data selected");
         return  data;
     }
 
@@ -66,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         sqLiteDatabase.execSQL("DELETE FROM " + TABLE_NAME);
         sqLiteDatabase.execSQL("SELECT * FROM "+ TABLE_NAME);
         //sqLiteDatabase.close();
+        Log.d("data","Data deleted");
     }
 
 }

@@ -1,6 +1,7 @@
 package TowerDefenseProject;
 
 import android.graphics.Point;
+import android.util.Log;
 
 import com.example.guth27.progtech.AbstractGame;
 import com.example.guth27.progtech.GameObjectHolder;
@@ -78,12 +79,14 @@ public class Game extends AbstractGame {
             if (current == DayNight.Day) {
                 if (Info.GetTotalRunningTimeMS() - currentStartTime > dayTime) {
                     current = DayNight.Night;
+                    Log.d("day","NIGHT");
                     notifier.NotifyObservers(current);
                     currentStartTime = Info.GetTotalRunningTimeMS();
                 }
             } else {
                 if (Info.GetTotalRunningTimeMS() - currentStartTime > nightTime) {
                     current = DayNight.Day;
+                    Log.d("day","DAY");
                     notifier.NotifyObservers(current);
                     currentStartTime = Info.GetTotalRunningTimeMS();
                 }
@@ -94,8 +97,8 @@ public class Game extends AbstractGame {
             GameObjectHolder.GetInstance().RemoveAll();
             //
             //this.Start();
-
-            mainActivity.setScore(GamePoints);
+                Log.d("OVER","GAME OVER");
+                mainActivity.setScore(GamePoints);
             mainActivity.finish();
             end = true;
             }
@@ -122,6 +125,7 @@ public class Game extends AbstractGame {
     {
         if(GamePoints >= cost){
             GamePoints -= cost;
+            Log.d("BUY","BOUGHT SOMETHING");
             return true;
         }
         return false;
@@ -132,6 +136,7 @@ public class Game extends AbstractGame {
     public static void MinusHP(int hp)
     {
         HP -= hp;
+        Log.d("HP","HP IS DECREASE");
     }
     public static int GetHpVolume(){
         return HP;
